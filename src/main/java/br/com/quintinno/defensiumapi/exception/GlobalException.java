@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.quintinno.defensiumapi.tranfer.ErrorResponseTransfer;
 import br.com.quintinno.defensiumapi.utility.DateUtility;
+import jakarta.persistence.EntityNotFoundException;
 
 @ControllerAdvice
 public class GlobalException {
@@ -34,10 +35,19 @@ public class GlobalException {
     public ResponseEntity<ErrorResponseTransfer> methodArgumentNotValidException(
             MethodArgumentNotValidException methodArgumentNotValidException) {
         ErrorResponseTransfer errorResponseTransfer = new ErrorResponseTransfer(
-            this.getMensagem(methodArgumentNotValidException),
-            this.getDataHora()
-        );
+                this.getMensagem(methodArgumentNotValidException),
+                this.getDataHora());
         return new ResponseEntity<>(errorResponseTransfer, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponseTransfer> entityNotFoundException(
+            EntityNotFoundException entityNotFoundException) {
+        logger.warn("Recurso não encontrado: {}", entityNotFoundException.getMessage());
+        ErrorResponseTransfer errorResponseTransfer = new ErrorResponseTransfer(
+                entityNotFoundException.getMessage(),
+                this.getDataHora());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponseTransfer);
     }
 
     private String getMensagem(MethodArgumentNotValidException methodArgumentNotValidException) {
@@ -47,11 +57,15 @@ public class GlobalException {
                 .stream()
                 .map(error -> error.getDefaultMessage())
                 .collect(Collectors.toList());
-        return mensagemList.isEmpty() ? "Falha na requisição!" : mensagemList.get(0);
+        return mensagemList.isEmpty() ? "Falha na requisição!" : this.getFindAllMensagem(mensagemList);
     }
 
     private String getDataHora() {
         return DateUtility.getDataHoraFormatada(LocalDateTime.now(), DateUtility.DATA_FORMATO_DDMMAAAAHHMMSS);
+    }
+
+    private String getFindAllMensagem(List<String> mensagemList) {
+        return String.join("; ", mensagemList);
     }
 
 }

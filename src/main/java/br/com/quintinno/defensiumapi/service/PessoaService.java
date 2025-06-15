@@ -10,6 +10,7 @@ import br.com.quintinno.defensiumapi.mapper.PessoaMapper;
 import br.com.quintinno.defensiumapi.repository.PessoaRepository;
 import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
 import br.com.quintinno.defensiumapi.tranfer.PessoaResponseTransfer;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class PessoaService {
@@ -28,6 +29,9 @@ public class PessoaService {
 
     public PessoaResponseTransfer update(PessoaRequestTranfer pessoaRequestTranfer) {
         PessoaEntity pessoaEntity = this.pessoaRepository.findByCodePublic(pessoaRequestTranfer.getCodePublic());
+        if (pessoaEntity == null) {
+            throw new EntityNotFoundException("Pessoa não Encontrada!");
+        }
             pessoaEntity.setNome(pessoaRequestTranfer.getNome());
         return PessoaMapper.fromPessoaResponseTransfer(this.pessoaRepository.save(pessoaEntity));
     }
