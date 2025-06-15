@@ -32,8 +32,17 @@ public class PessoaService {
         if (pessoaEntity == null) {
             throw new EntityNotFoundException("Pessoa não Encontrada!");
         }
-            pessoaEntity.setNome(pessoaRequestTranfer.getNome());
+        pessoaEntity.setNome(pessoaRequestTranfer.getNome());
         return PessoaMapper.fromPessoaResponseTransfer(this.pessoaRepository.save(pessoaEntity));
+    }
+
+    public void inativarPessoa(String codePublic) {
+        PessoaEntity pessoaEntity = this.pessoaRepository.findByCodePublic(codePublic);
+        if (pessoaEntity == null) {
+            throw new EntityNotFoundException("Pessoa não Encontrada!");
+        }
+        pessoaEntity.setActive(false);
+        this.pessoaRepository.save(pessoaEntity);
     }
 
 }
