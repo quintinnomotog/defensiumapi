@@ -2,18 +2,10 @@ package br.com.quintinno.defensiumapi.tranfer;
 
 public class PessoaRequestTranfer {
 
-    private String codePublic;
-
     private String nome;
 
-    public PessoaRequestTranfer() { }
-
-    public String getCodePublic() {
-        return codePublic;
-    }
-
-    public void setCodePublic(String codePublic) {
-        this.codePublic = codePublic;
+    public PessoaRequestTranfer(String nome) {
+        this.nome = nome;
     }
 
     public String getNome() {
@@ -22,6 +14,6 @@ public class PessoaRequestTranfer {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
+    } 
     
 }

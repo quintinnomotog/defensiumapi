@@ -20,7 +20,7 @@ public class PessoaEntity {
     private Long code;
 
     @Column(name = "CODE_PUBLIC", updatable = false, nullable = false)
-    private String codePublic;
+    private String codePublic = UUID.randomUUID().toString();
 
     @Column(name = "NOME", unique = true, nullable = false)
     private String nome; 
@@ -35,11 +35,10 @@ public class PessoaEntity {
     private LocalDateTime dataDelecao;
 
     @Column(name = "ACTIVE", nullable = false)
-    private Boolean active;
+    private Boolean active = true;
 
-    public PessoaEntity() {
-        this.codePublic = UUID.randomUUID().toString();
-        this.active = true;
+    public PessoaEntity(String nome) {
+        this.nome = nome;
     }
 
     public Long getCode() {

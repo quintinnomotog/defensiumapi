@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 import br.com.quintinno.defensiumapi.service.PessoaService;
+import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
 
 @RestController
 @RequestMapping("/defensium/pessoa")
@@ -17,8 +18,8 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @PostMapping
-    public PessoaEntity create(@RequestBody PessoaEntity pessoaEntity) {
-        return this.pessoaService.create(pessoaEntity);
+    public PessoaEntity create(@RequestBody PessoaRequestTranfer pessoaRequestTranfer) {
+        return this.pessoaService.create(pessoaRequestTranfer);
     }
 
 }
