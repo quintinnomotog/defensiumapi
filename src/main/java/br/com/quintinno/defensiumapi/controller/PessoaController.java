@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 import br.com.quintinno.defensiumapi.service.PessoaService;
 import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/defensium/pessoa")
@@ -18,7 +19,7 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @PostMapping
-    public PessoaEntity create(@RequestBody PessoaRequestTranfer pessoaRequestTranfer) {
+    public PessoaEntity create(@RequestBody @Valid PessoaRequestTranfer pessoaRequestTranfer) {
         return this.pessoaService.create(pessoaRequestTranfer);
     }
 
