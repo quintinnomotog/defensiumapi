@@ -15,7 +15,7 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
 
     public PessoaEntity create(PessoaRequestTranfer pessoaRequestTranfer) {
-        return this.pessoaRepository.save(PessoaMapper.fromPessoaEntity(pessoaRequestTranfer));
+        return this.pessoaRepository.save(PessoaMapper.toPessoaEntity(pessoaRequestTranfer));
     }
 
 }

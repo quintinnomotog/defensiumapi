@@ -33,9 +33,10 @@ public class GlobalException {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponseTransfer> methodArgumentNotValidException(
             MethodArgumentNotValidException methodArgumentNotValidException) {
-        ErrorResponseTransfer errorResponseTransfer = new ErrorResponseTransfer();
-        errorResponseTransfer.setMensagem(this.getMensagem(methodArgumentNotValidException));
-        errorResponseTransfer.setDataHoraRequisicao(this.getDataHora());
+        ErrorResponseTransfer errorResponseTransfer = new ErrorResponseTransfer(
+            this.getMensagem(methodArgumentNotValidException),
+            this.getDataHora()
+        );
         return new ResponseEntity<>(errorResponseTransfer, HttpStatus.BAD_REQUEST);
     }
 

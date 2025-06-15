@@ -5,11 +5,11 @@ import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
 
 public class PessoaMapper {
 
-    public static PessoaEntity fromPessoaEntity(PessoaRequestTranfer pessoaRequestTranfer) {
+    public static PessoaEntity toPessoaEntity(PessoaRequestTranfer pessoaRequestTranfer) {
         return new PessoaEntity(pessoaRequestTranfer.getNome());
     }
 
-    public static PessoaRequestTranfer fromPessoaTransfer(PessoaEntity pessoaEntity) {
+    public static PessoaRequestTranfer toPessoaTransfer(PessoaEntity pessoaEntity) {
         return new PessoaRequestTranfer(pessoaEntity.getNome());
     }
 

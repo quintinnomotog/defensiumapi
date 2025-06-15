@@ -8,6 +8,11 @@ public class ErrorResponseTransfer {
 
     public ErrorResponseTransfer() { }
 
+    public ErrorResponseTransfer(String mensagem, String dataHoraRequisicao) {
+        this.mensagem = mensagem;
+        this.dataHoraRequisicao = dataHoraRequisicao;
+    }
+
     public String getMensagem() {
         return mensagem;
     }
