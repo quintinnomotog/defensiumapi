@@ -1,26 +1,31 @@
 package br.com.quintinno.defensiumapi.tranfer;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-public class HttpResponseTransfer<T> {
+import br.com.quintinno.defensiumapi.utility.DateUtility;
+
+public class RestResponseTransfer<T> {
 
     private String mensagem;
 
-    private String dataCriacao;
+    private String dataHora;
 
     private String operacao;
 
     private T object;
 
-    private List<T> objectList;
+    private List<T> objectList = List.of();
 
-    public HttpResponseTransfer() { }
+    public RestResponseTransfer() {
+        this.dataHora = DateUtility.getDataHoraFormatada(LocalDateTime.now(), DateUtility.DATA_FORMATO_DDMMAAAAHHMMSS);
+    }
 
-    public HttpResponseTransfer(T object) {
+    public RestResponseTransfer(T object) {
         this.object = object;
     }
 
-    public HttpResponseTransfer(List<T> objectList) {
+    public RestResponseTransfer(List<T> objectList) {
         this.objectList = objectList;
     }
 
@@ -32,12 +37,12 @@ public class HttpResponseTransfer<T> {
         this.mensagem = mensagem;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
+    public String getDataHora() {
+        return dataHora;
     }
 
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataHora(String dataHora) {
+        this.dataHora = dataHora;
     }
 
     public String getOperacao() {

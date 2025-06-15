@@ -10,6 +10,7 @@ import br.com.quintinno.defensiumapi.mapper.PessoaMapper;
 import br.com.quintinno.defensiumapi.repository.PessoaRepository;
 import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
 import br.com.quintinno.defensiumapi.tranfer.PessoaResponseTransfer;
+import br.com.quintinno.defensiumapi.tranfer.RestResponseTransfer;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -36,13 +37,18 @@ public class PessoaService {
         return PessoaMapper.fromPessoaResponseTransfer(this.pessoaRepository.save(pessoaEntity));
     }
 
-    public void inativarPessoa(String codePublic) {
+    public RestResponseTransfer inativarPessoa(String codePublic) {
         PessoaEntity pessoaEntity = this.pessoaRepository.findByCodePublic(codePublic);
         if (pessoaEntity == null) {
             throw new EntityNotFoundException("Pessoa não Encontrada!");
         }
         pessoaEntity.setActive(false);
+        RestResponseTransfer restResponseTransfer = new RestResponseTransfer<PessoaResponseTransfer>();
+            restResponseTransfer.setOperacao("UPDATE");
+            restResponseTransfer.setMensagem("Pessoa Inativada com Sucesso!");
+            restResponseTransfer.setObject(PessoaMapper.fromPessoaResponseTransfer(pessoaEntity));
         this.pessoaRepository.save(pessoaEntity);
+        return restResponseTransfer;
     }
 
 }

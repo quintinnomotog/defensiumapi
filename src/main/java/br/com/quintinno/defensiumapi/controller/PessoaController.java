@@ -18,6 +18,7 @@ import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 import br.com.quintinno.defensiumapi.service.PessoaService;
 import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
 import br.com.quintinno.defensiumapi.tranfer.PessoaResponseTransfer;
+import br.com.quintinno.defensiumapi.tranfer.RestResponseTransfer;
 import jakarta.validation.Valid;
 
 @RestController
@@ -45,9 +46,8 @@ public class PessoaController {
     }
 
     @DeleteMapping("/{codePublic}")
-    public ResponseEntity inativarPessoa(@PathVariable("codePublic") String codePublic) {
-        this.pessoaService.inativarPessoa(codePublic);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<RestResponseTransfer> inativarPessoa(@PathVariable("codePublic") String codePublic) {
+        return ResponseEntity.ok().body(this.pessoaService.inativarPessoa(codePublic));
     }
 
 }
