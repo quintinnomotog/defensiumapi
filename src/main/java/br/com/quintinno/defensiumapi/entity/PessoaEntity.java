@@ -22,8 +22,8 @@ public class PessoaEntity {
     @Column(name = "CODE_PUBLIC", updatable = false, nullable = false)
     private String codePublic;
 
-    @Column(name = "NOME", nullable = false)
-    private String nome;
+    @Column(name = "NOME", unique = true, nullable = false)
+    private String nome; 
 
     @Column(name = "DATA_CRIACAO", updatable = false)
     private LocalDateTime dataCriacao = LocalDateTime.now();
