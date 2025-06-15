@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 
 @Repository
-public interface PessoaRepository extends JpaRepository<PessoaEntity, Long> { }
+public interface PessoaRepository extends JpaRepository<PessoaEntity, Long> {
+
+    public PessoaEntity findByCodePublic(String codePublic);
+
+}

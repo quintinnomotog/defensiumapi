@@ -1,5 +1,7 @@
 package br.com.quintinno.defensiumapi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 import br.com.quintinno.defensiumapi.mapper.PessoaMapper;
 import br.com.quintinno.defensiumapi.repository.PessoaRepository;
 import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
+import br.com.quintinno.defensiumapi.tranfer.PessoaResponseTransfer;
 
 @Service
 public class PessoaService {
@@ -16,6 +19,17 @@ public class PessoaService {
 
     public PessoaEntity create(PessoaRequestTranfer pessoaRequestTranfer) {
         return this.pessoaRepository.save(PessoaMapper.toPessoaEntity(pessoaRequestTranfer));
+    }
+
+    public List<PessoaResponseTransfer> findAll() {
+        List<PessoaEntity> pessoaEntityList = this.pessoaRepository.findAll();
+        return PessoaMapper.toPessoaResponseTransfer(pessoaEntityList);
+    }
+
+    public PessoaResponseTransfer update(PessoaRequestTranfer pessoaRequestTranfer) {
+        PessoaEntity pessoaEntity = this.pessoaRepository.findByCodePublic(pessoaRequestTranfer.getCodePublic());
+            pessoaEntity.setNome(pessoaRequestTranfer.getNome());
+        return PessoaMapper.fromPessoaResponseTransfer(this.pessoaRepository.save(pessoaEntity));
     }
 
 }

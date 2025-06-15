@@ -4,8 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 
 public class PessoaRequestTranfer {
 
-    @NotBlank(message = "O campo nome deve ser informado!")
+    @NotBlank(message = "Necessário informar campo obrigatório!")
     private String nome;
+
+    private String codePublic;
 
     public PessoaRequestTranfer(String nome) {
         this.nome = nome;
@@ -17,6 +19,14 @@ public class PessoaRequestTranfer {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCodePublic() {
+        return codePublic;
+    }
+
+    public void setCodePublic(String codePublic) {
+        this.codePublic = codePublic;
     } 
     
 }

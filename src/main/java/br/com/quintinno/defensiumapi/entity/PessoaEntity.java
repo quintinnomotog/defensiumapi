@@ -37,6 +37,8 @@ public class PessoaEntity {
     @Column(name = "ACTIVE", nullable = false)
     private Boolean active = true;
 
+    public PessoaEntity() { }
+
     public PessoaEntity(String nome) {
         this.nome = nome;
     }
