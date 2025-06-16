@@ -29,6 +29,8 @@ public class CredencialRequestTransfer {
 
     private String observacao;
 
+    private String codePublicCredencial;
+
     public CredencialRequestTransfer() { }
 
     public CategoriaCredencialEntity getCategoriaCredencialEntity() {
@@ -85,6 +87,14 @@ public class CredencialRequestTransfer {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public String getCodePublicCredencial() {
+        return codePublicCredencial;
+    }
+
+    public void setCodePublicCredencial(String codePublicCredencial) {
+        this.codePublicCredencial = codePublicCredencial;
     }
 
 }

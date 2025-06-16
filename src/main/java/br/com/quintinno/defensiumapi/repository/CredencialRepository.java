@@ -1,5 +1,7 @@
 package br.com.quintinno.defensiumapi.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,7 @@ public interface CredencialRepository extends JpaRepository<CredencialEntity, Lo
         PessoaEntity pessoaEntity,
         String identificador
     );
+
+    public Optional<CredencialEntity> findByCodePublic(String codePublic);
 
 }

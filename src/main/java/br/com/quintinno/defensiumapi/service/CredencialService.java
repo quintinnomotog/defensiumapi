@@ -1,10 +1,13 @@
 package br.com.quintinno.defensiumapi.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.quintinno.defensiumapi.entity.CredencialEntity;
 import br.com.quintinno.defensiumapi.exception.NegocioException;
 import br.com.quintinno.defensiumapi.mapper.CredencialMapper;
 import br.com.quintinno.defensiumapi.repository.CredencialRepository;
@@ -19,7 +22,9 @@ public class CredencialService {
     @Autowired
     private CredencialRepository credencialRepository;
 
-    // FIXME: Tratar: HttpMessageNotReadableException; InvalidDataAccessApiUsageException;
+    // FIXME: Tratar: HttpMessageNotReadableException;
+    // HttpRequestMethodNotSupportedException;
+    // InvalidDataAccessApiUsageException;
     public CredencialResponseTransfer create(CredencialRequestTransfer credencialRequestTransfer) {
         if (isRegistroDuplicado(credencialRequestTransfer)) {
             throw new NegocioException("Essa Credencial já foi cadastrada!");
@@ -30,12 +35,30 @@ public class CredencialService {
                         this.credencialRepository.save(CredencialMapper.toCredencialEntity(credencialRequestTransfer)));
     }
 
-    public boolean isRegistroDuplicado(CredencialRequestTransfer credencialRequestTransfer) {
+    private boolean isRegistroDuplicado(CredencialRequestTransfer credencialRequestTransfer) {
         logger.info("Verificando credencial duplicada!");
         return this.credencialRepository.existsByCategoriaCredencialEntityAndPessoaEntityAndIdentificador(
-            credencialRequestTransfer.getCategoriaCredencialEntity(), 
-            credencialRequestTransfer.getPessoaEntity(),
-            credencialRequestTransfer.getIdentificador());
+                credencialRequestTransfer.getCategoriaCredencialEntity(),
+                credencialRequestTransfer.getPessoaEntity(),
+                credencialRequestTransfer.getIdentificador());
+    }
+
+    public List<CredencialResponseTransfer> findAll() {
+        List<CredencialEntity> credencialEntityList = this.credencialRepository.findAll();
+        return CredencialMapper.toCredencialResponseTransfer(credencialEntityList);
+    }
+
+    public CredencialResponseTransfer update(CredencialRequestTransfer credencialRequestTransfer) {
+        CredencialEntity credencialEntityOptional = this.credencialRepository
+                .findByCodePublic(credencialRequestTransfer.getCodePublicCredencial())
+                .orElseThrow(() -> new NegocioException("Credencial não encontrada!"));
+        if (isRegistroDuplicado(credencialRequestTransfer)) {
+            throw new NegocioException("Essa Credencial já foi cadastrada!");
+        }
+        return CredencialMapper
+                .toCredencialResponseTransfer(
+                        this.credencialRepository.save(
+                                CredencialMapper.toCredencialEntity(credencialRequestTransfer)));
     }
 
 }

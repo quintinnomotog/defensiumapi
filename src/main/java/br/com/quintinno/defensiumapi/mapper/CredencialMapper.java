@@ -1,5 +1,8 @@
 package br.com.quintinno.defensiumapi.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import br.com.quintinno.defensiumapi.entity.CredencialEntity;
 import br.com.quintinno.defensiumapi.tranfer.CredencialRequestTransfer;
 import br.com.quintinno.defensiumapi.tranfer.CredencialResponseTransfer;
@@ -33,6 +36,13 @@ public class CredencialMapper {
             credencialResponseTransfer.setObservacao(credencialEntity.getObservacao());
             credencialResponseTransfer.setDataOperacao(DateUtility.getDataHoraFormatada(credencialEntity.getDataCriacao(), DateUtility.DATA_FORMATO_DDMMAAAAHHMMSS));
         return credencialResponseTransfer;
+    }
+
+    public static List<CredencialResponseTransfer> toCredencialResponseTransfer(List<CredencialEntity> credencialEntityList) {
+        return credencialEntityList
+                .stream()
+                .map(CredencialMapper::toCredencialResponseTransfer)
+                .collect(Collectors.toList());
     }
 
 }
