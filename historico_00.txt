@@ -1,0 +1,572 @@
+cat defensium.pro
+git checkout -b DEFENSIUMAPI20251606421956
+git branch
+clear
+git reset --hard
+cd Projects/defensiumapi/
+docker compose up
+ll
+exit
+git log
+git checkout DEFENSIUMAPI20251606191225
+git push origin v1.0.0
+
+git tag -a v1.0.0 -m "Versão 1.0.0 - Entrega da Módulo Gerenciador de Pessoas do Sistema"
+
+git commit -m "feature: Entrega da funcionalidade Gerenciador de Pessoas"
+git merge --squash DEFENSIUMAPI20251606191225
+git checkout main
+git push origin DEFENSIUMAPI20251606191225
+
+git merge --squash DEFENSIUMAPI20251506261216
+git checkout DEFENSIUMAPI20251506261216
+cd defensiumapi/
+cd Projects/
+git status
+"/home/desenvolvimento/Projects/defensiumapi/mvnw" package -f "/home/desenvolvimento/Projects/defensiumapi/pom.xml"
+"/home/desenvolvimento/Projects/defensiumapi/mvnw" install -f "/home/desenvolvimento/Projects/defensiumapi/pom.xml"
+"/home/desenvolvimento/Projects/defensiumapi/mvnw" clean -f "/home/desenvolvimento/Projects/defensiumapi/pom.xml"
+docker stop container-mysql
+docker stop mysql-container
+
+docker ps
+sudo lsof -i :3306
+
+clea
+sudo /opt/lampp/lampp stop
+code .
+chromium --app=http://localhost:8100
+ionic serve --no-open
+code-insiders .
+./android.sh
+sudo chmod +x android.sh
+cd toastcontrollermodulesapp/
+ionic start toastcontrollermodulesapp
+cd ..
+npm install @ionic/pwa-elements
+npm install @capacitor/core@7.2.0
+cd Laboratory/toastapp/
+npx capacitor open android
+npx capacitor open android/
+npx capacitor sync --inline
+npx capacitor add android
+npm install @capacitor/android@7.2.0 --save-exact
+npx npm run build --  --configuration=production
+cat android.sh
+cd Projects/securityapp/
+insider .
+ionic start toastapp
+cd Laboratory/
+emulator -avd Medium_Phone_API_35
+ionic capacitor run android -l --external
+
+cd docker/
+java -jar target/securityapi-0.0.1-SNAPSHOT.jar
+java -jar target/registrumapi-1.0.0.jar
+cd Projects/securityapi
+cd Projects/securityapi/
+mvn clean install package
+rm -rf target/
+cd securityapi/
+rm -rf www
+rm -rf android
+ionic generate interface model/signup
+git add -f android/
+
+git check-ignore -v android/**/*
+ionic generate service service/signin
+ionic generate service service/signup
+sudo /opt/lampp/lampp start
+npm i ngx-mask
+ls
+npm install ngx-mask --save
+cd formulariotelefoneapp/
+ionic start formulariotelefoneapp
+npm install intl-tel-input
+rm -rf campotelefoneapp/
+npm install ion-intl-tel-input ionic-selectable flag-icon-css google-libphonenumber --save
+npm i ion-intl-tel-input
+ionic generate page screen/principal
+cd campotelefoneapp/
+ionic start campotelefoneapp
+cd
+sudo waydroid app
+sudo waydroid
+sudo waydroid app install /home/desenvolvimento/Projects/securityapp/android/app/release/app-release.apk
+sudo systemctl start waydroid-container
+sudo waydroid init
+waydroid init
+waydroid app install /home/desenvolvimento/Projects/securityapp/android/app/release/app-release.apk
+npm install moment
+code.
+rm -rf www
+rm -rf android
+npx npm run build --  --configuration=production
+npm install @capacitor/android@7.2.0 --save-exact
+npx cap add android
+npx cap sync --inline
+npx cap open android
+cd Laboratory/datetimeapp/
+ionic generate page component/modal
+npm install date-fns
+cd datetimeapp/
+ionic start datetimeapp
+emulator -list-avds
+
+source ~/.bashrc
+
+code .bashrc
+source ~/.bashrc
+editor .bashrc
+cd emulator/
+cd Android/Sdk/
+waydroid status
+
+waydroid session start
+
+sudo systemctl status waydroid-container
+
+sudo systemctl restart waydroid-container
+
+sudo waydroid shell
+
+pm install waydroid app install /home/desenvolvimento/Projects/securityapp/android/app/release/securityapp-v1.0.0-SNAPSHOT.apk
+
+waydroid shell
+
+waydroid app install /home/desenvolvimento/Projects/securityapp/android/app/release/securityapp-v1.0.0-SNAPSHOT.apk
+
+sudo apt install xwayland
+
+waydroid session start --x11
+
+sudo systemctl start waydroid-container
+
+waydroid
+waydroid app install /home/desenvolvimento/Projects/securityapp/android/app/release/securityapp-v1.0.0-SNAPSHOT.apk
+sudo chmod +x WayDroid.sh
+cd Downloads/
+pwd
+cd android/app/release/
+sudo ./WayDroid.sh
+./WayDroid.sh
+cd testapp/
+ionic start testapp
+c
+./securityapp.sh
+sudo chmod +x securityapp.sh
+ionic generate page screen/signup
+ionic generate page screen/signin
+rm -rf .git
+ll -a
+ll -l
+cd securityapp/
+ionic start securityapp blank --type=angular
+cd Laboratory/storagemanagementapp/
+cat resultado-1749476759814.txt
+cat thi
+cklear
+cat resultado-1749475679101.txt
+cat resultado-1749473683243.txt
+cat vasco.txt
+cd /opt/android-studio/bin/ && ./studio.sh
+cat android_build.sh
+cat android/
+./android_build.sh
+sudo chmod +x android_build.sh
+./storagemanagementapp_build.sh
+sudo chmod +x storagemanagementapp_build.sh
+npm install swiper
+subl .
+ionic serve --no-open && chromium --app:http://localhost:8081
+ionic generate page page/principal
+subl
+cd storagemanagementapp/
+ionic start storagemanagementapp blank --type=angular
+fc-cache -f -v
+./mvnw spring-boot:run
+
+"/home/desenvolvimento/Projects/securityapi/mvnw" install -f "/home/desenvolvimento/Projects/securityapi/pom.xml"
+"/home/desenvolvimento/Projects/securityapi/mvnw" clean -f "/home/desenvolvimento/Projects/securityapi/pom.xml"
+ionic generate page page/signup
+ionic generate page page/login
+cd ocpassapp/
+ionic start ocpassapp blank --type=angular
+history
+adb devices
+lsusb
+
+adb devices
+
+code &
+ionic cap run android -l --external
+
+emulator -list-avds   # para ver a lista de emuladores
+emulator -avd NomeDoSeuEmulador
+
+adb kill-server
+adb start-server
+adb devices
+
+adb devices
+ionic cap run android -l --external
+
+ionic cap sync android
+
+npx cap update android
+
+ionic cap run android -l --external
+sudo apt install adb -y
+sudo apt install google-android-platform-tools-installer -y
+sudo apt install google-android-platform-tools-installer
+ionic cap run android
+
+cd Desenvolvimento/QuintinnoDigital/Defensium/defensiumapp/
+ionic generate component component/input-text
+code
+ionic generate page page/register
+ionic generate component component/button-outline-icon
+cd Laboratory/loginpagemodeloneapp/
+ionic generate component component/button-solid
+cd loginpagemodeloneapp/
+ionic start loginpagemodeloneapp blank --type=angular
+ionic start loginpagemodeloneapp blank --type=angular --standalone
+
+ckear
+ionic start loginpagemodeloneapp blank --type=angular standalone
+
+ionic start loginpagemodeloneapp --blank --standalone --angular
+ionic start loginpagemodeloneapp --blank --standalone
+ionic start loginpagemodeloneapp
+loginpagemodeloneapp
+ionic generate page page/senha/senha-cadastrar
+./defensiumapp_build_dev.sh
+./vscode_remove.sh
+sudo chmod +x vscode_remove.sh
+cd Dow
+./defensiumapp_build.sh
+ionic generate page page/vault
+sudo chmod +x defensiumapp_build_dev.sh
+cd searchbaranimatedapp/
+ionic start searchbaranimatedapp
+ionic generate page page/senha
+cd defensiumapp/
+sudo apt-get upgrade -y
+sudo apt-get update -y
+npm install @angular/cdk@19
+
+npm install @angular/cdk
+
+ionic generate page page/contato
+ionic generate service service/pessoa
+cd Laboratory/infinitescrollapp/
+omf install batman
+omf remove lambda
+omf install neolambda
+cd infinitescrollapp/
+ionic start infinitescrollapp
+rm -rf infinite-scroll-app/
+npm run start
+
+npm install rxjs
+
+npm install
+rm -rf node_modules/
+cd infinite-scroll-app/
+ionic start infinite-scroll-app
+ssh u0_a279@0.tcp.sa.ngrok.io -p 18207
+
+rm -rf www/
+rm -rf android/
+ionic generate page page/configuracao
+ionic generate page component/tabmenu
+ionic generate component component/tabmenu
+git checkout -b DEFENSIUMAPP20250206141822
+history >> historico_00.txt
+ionic capacitor run android -l --external
+ionic cap run android
+sudo chmod +x defensiumapp_build.sh
+nano defensiumapp_build.sh
+npx cap open android
+
+cat defensiumapp_build.sh
+ionic generate component component/senha
+ionic generate component component/categoria
+npx cap open android
+npx cap sync --inline
+npx cap add android
+ls -l
+ionic generate component component/cabecalho
+git init
+ionic start defensiumapp
+git checkout -b REGISTRUMAPI20253105071928
+git push --set-upstream origin master
+cd Desenvolvimento/QuintinnoDigital/Registrum/registrumapi/
+git push
+git remote add origin https://github.com/quintinnomotog/registrumapi.git
+git commit -m "init: Versão inicial do projeto"
+git add *
+git push --set-upstream origin main
+
+git ls-remote --heads origin
+
+git branch -m master
+git branch -m main master
+
+git push -u origin master
+ll a-
+./idea.sh
+sudo chmod +x idea.sh
+cd idea-IC-251.25410.129/bin/
+cd /opt
+cd /op
+cd registrumdoc/
+ionic serve
+cd Desenvolvimento/Defensiuum/defensiuumapp/
+./studio.sh
+cd /opt/android-studio/bin/
+ionic generate page pages/produto/produto-detalhe
+ionic generate page pages/produto
+ionic generate component components/product
+./defensium.sh
+sudo chmod +x defensium.sh
+npx npm run build --  --configuration=production
+    npx cap sync --inline
+ionic generate component components/category
+ionic generate service services/category
+ionic generate service services/product
+ionic generate interface model/variety
+ionic generate interface model/product
+ionic generate class database/product
+ionic generate class database/category
+ionic generate interface model/category
+ionic generate interface model/seller
+ionic generate interface model/sellers
+ionic generate class model/sellers
+ionic generate class model/products
+ionic generate class model/categories
+ionic generate class model/banner
+ionic generate class model
+google-chrome --app=http://localhost:8100
+chrome --app=http://localhost:8100
+chrome-browser --app=http://localhost:8100
+ionic generate component components/banner
+ionic generate component components/list-heading
+npx npm run build --  --configuration=production
+    npm install @capacitor/android@7.2.0 --save-exact
+    npx cap add android
+    npx cap sync --inline
+ionic generate page components/list-heading
+ionic generate page pages/conversacao
+ionic generate page pages/configuracao
+ionic generate page pages/principal
+ionic generate page components/tabmenu
+cd android-studio/bin/
+cd /opt/
+ionic generate page pages/tabmenu/configuracao
+ionic generate page pages/tabmenu/principal
+ionic generate page pages/tabmenu
+cd Desenvolvimento/QuintinnoDigital/Registrum/registrumapp/
+omf install lambda
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > install
+fish install --path=~/.local/share/omf --config=~/.config/omf
+fish install --path=~/.local/share/omf --config=~/.config/omf
+echo "exec fish" >> ~/.bashrc
+curl -L https://get.oh-my.fish | fish > install
+sudo apt-get remove fish
+curl -L https://get.oh-my.fish | fish
+sudo apt-get install fish
+ionic start registrumapp
+rm -rf registrumapp/
+chromium --app=chromium-browser --app=http://streamsquid.com/
+chromium --app=http://streamsquid.com/
+chromium-browser --app=http://streamsquid.com/
+cd registrumapp/
+l
+cd Registrum/
+ssh -p 8022 u0_a279@192.168.1.6
+ionic generate page pages/pessoa/pessoa-create
+ionic generate page pages/pessoa
+cd Registrum/registrumapp/
+source bashrc
+source .bashrc
+ionic start
+cd Desenvolvimento/
+ionic
+npm i -g @ionic/cli
+npm install -g npm@11.4.1
+cd Desenvolvimento/Registrum/
+rm -rf .git/
+psw
+pws
+ssh -p 8022 u0_a279@192.168.15.12
+scp -P 8022 termux-ngrok.zip  u0_a279@192.168.15.12:/sdcard/
+ssh -p 8022 u0_a279@192.168.1.15
+ssh -p 13581 u0_a279@0.tcp.sa.ngrok.io
+scp -P 8022 -r termux-ngrok.zip u0_a279@192.168.15.12:/data/data/com.termux/files/home/opt/
+scp -P 8022 -r /home/usuario/pasta u0_a279@192.168.15.12:/data/data/com.termux/files/home/opt/
+sudo /opt/lampp/bin/mysql -u root -p -e "SELECT VERSION();"
+git config --global init.defaultBranch master
+cd serariumapi/
+git config user.email "quintinno.motog@gmail.com"
+git config user.name "José Quintinno"
+cd Desenvolvimento/Serarium/serariumapi/
+sudo /opt/lampp/bin/mysql_upgrade -u root -p
+sudo ./xampp-linux-x64-8.0.30-0-installer.run
+./xampp-linux-x64-8.0.30-0-installer.run
+chmod +x xampp-linux-x64-8.0.30-0-installer.run
+java --version
+sudo update-alternatives --set java /opt/jdk-21.0.6/bin/java
+sudo update-alternatives --install "/usr/bin/java" "java" "/opt/jdk-21.0.6/bin/java" 1
+sudo update-alternatives --install "/usr/bin/java" "java" "/opt/java/jdk-21.0.6/bin/java" 1
+"/home/desenvolvimento/Desenvolvimento/Registrum/registrumapi/mvnw" install -f "/home/desenvolvimento/Desenvolvimento/Registrum/registrumapi/pom.xml"
+"/home/desenvolvimento/Desenvolvimento/Registrum/registrumapi/mvnw" clean -f "/home/desenvolvimento/Desenvolvimento/Registrum/registrumapi/pom.xml"
+java GeradorPessoa.java
+javac GeradorPessoa.java
+javac pessoa_insert.java
+sudo apt install openjdk-21-jdk-headless
+cd 2.modelagem/
+ssh -p 8022 u0_a274@192.168.15.8
+mvn clean install
+cd registrumapi/
+sudo apt install maven
+mvn clen install
+ps aux | grep [j]ava
+ifconfig
+sudo apt-get -y update
+sudo -u postgres psql
+sudo -i -u postgres
+psql
+su postgres
+sudo passwd postgres
+sudo apt-get install postgresql postgresql-contrib -y
+sudo apt-get -y upgrade
+sudo apt-get -y autoremove
+sudo apt-get -y autoclean
+sudo apt-get -y autoclea
+sudo apt-get -y autoclear
+./fasciculuumdtb_mysql.sh
+cd fasciculuumdtb/
+fasciculuumdtb/
+cd Fasciculuum/
+scp -P 8022 -r u0_a266@192.168.15.3:/storage/emulated/0/ ~/Downloads/TERMUX_BACKUP
+ssh -p 8022 u0_a266@192.168.15.3
+scp -P 8022 -r u0_a266@192.168.15.3:/storage/emulated/0/Download ~/Downloads/termux_downloads
+ssh -p 8022 u0_a266@192.168.1.3
+history >> historico_01.txt
+curl ifconfig.me
+flatpak remove flathub com.github.eneshecan.WhatsAppForLinux -y
+flatpak install flathub com.github.eneshecan.WhatsAppForLinux
+flatpak install flathub com.github.eneshecan.WhatsAppForLinux -y
+flatpak remove flathub com.github.eneshecan.WhatsAppForLinux
+wine WhatsAppInstaller.exe
+wine
+flatpak run com.usebottles.bottles
+flatpak install flathub com.usebottles.bottles
+ls -lh WhatsAppSetup.exe
+wget -O WhatsAppSetup.exe https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+wine WhatsAppSetup.exe
+sudo apt install wine -y
+wget https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+chromium --app=https://web.whatsapp.com/
+chromium --app=https://youtube.com.br
+chromium --app=https://instagram.com
+sudo apt-get -upgrade
+chromium --app=https://www.facebook.com/ben613
+git commit -m "Superior Tribunal Militar"
+git remote add origin https://github.com/repositorystudy/STM.git
+cd STM/
+sudo fc-cache -f -v
+wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megasync-xUbuntu_24.04_amd64.deb && sudo apt install "$PWD/megasync-xUbuntu_24.04_amd64.deb"
+cd dow
+rm -rf megasync-xUbuntu_24.04_amd64.deb
+cd Desenvolvimento/Defensiuum/DE
+cd DES
+cd Downloads/D
+pdfgrep -r "Segurança Orgânica" /home/desenvolvimento/Downloads/
+sudo apt update && sudo apt install pdfgrep
+sudo apt autoclean -y
+sudo apt autoremove -y
+sudo pulseaudio --start
+pulseaudio --start
+ionic generate service services/pessoa
+chromium --app=http://localhost:8100/home
+./defensiuum_mysql.sh
+./docker_mint.sh
+sudo chmod +x docker_mint.sh
+sudo +x docker_mint.sh
+cd Desenvolvimento/Defensiuum/defensiuumdtb/
+sudo chmod +x defensiuum_mysql.sh
+docker start defensiuum-mysql-5.7
+docker stop defensiuum-mysql-5.7
+docker restart defensiuum-mysql-5.7
+cd defensiuumapp/
+cd Desenvolvimento/Defensiuum/
+sudo apt-get install terminator
+chromium --app=http://www.localhost:8081
+chromium --app=http://www.localhost:8081 &
+chrome
+cd Defensiuum/
+java -jar NoteLab_05-05-2009_04-24-41_v0.2.1beta1.jar
+wget https://www.foxit.com/pt/downloads/?srsltid=AfmBOopfQHR6G3gP5atTw55OnDS82LlAXwK1q0sBwsLSgerBud1lBxFL#
+get https://www.foxit.com/pt/downloads/?srsltid=AfmBOopfQHR6G3gP5atTw55OnDS82LlAXwK1q0sBwsLSgerBud1lBxFL#
+chromium
+ionic start defensiuumapp
+rm -rf defensiuumapp
+zip -r defensiuumapp.zip defensiuumapp/
+zip defensiuumapp
+zip defensiuumapp/ -r
+cd defensiuumdtb/
+cd defensiuum
+ionic generate page pages/credencial/credencial-url-modal
+ionic generate page pages/credencial
+ionic generate component components/tabmenu
+sudo apt-get install -y chromium
+sudo apt-get install -y chromium-browser
+java -version
+sudo update-alternatives --set java /opt/jdk-17.0.12/bin/java
+sudo update-alternatives --install "/usr/bin/java" "java" "/opt/jdk-17.0.12/bin/java" 1
+ccclear
+sudo chmod 777 /opt/
+ll cd defensiuumapp/
+mv defensiuumapp/ Defensiuum/
+npm install @ionic/angular@latest @ionic/angular-server@latest @ionic/angular-toolkit@11
+npm install @ionic/angular@latest
+nvm install v22.14.0
+nvm ls-remote
+nvm la-remote
+nvm --version
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+sudo apt-get install -y parcellite
+echo $MYSQL_DEFENSIUUM_DATABASE
+source ~./bashrc
+code .bashc
+sudo apt-get install -y git
+docker exec -it fasciculuum-mysql-5.7 mysql -u root -p
+EOF
+CONSTRAINT un_pessoa_nome UNIQUE (nome)
+CONSTRAINT pk_pessoa PRIMARY KEY (code),
+data_nascimento DATE NOT NULL,
+apelido VARCHAR(100) NULL,
+nome_fonetico VARCHAR(200) NULL,
+nome VARCHAR(200) NOT NULL,
+tipo_pessoa VARCHAR(100) NOT NULL,
+code BIGINT AUTO_INCREMENT,
+FLUSH PRIVILEGES;
+CREATE USER IF NOT EXISTS 'fasciculuum'@'%' IDENTIFIED BY 'fasciculuum';
+docker restart fasciculuum-mysql-5.7
+./fasciculuumdtb.sh
+cd Desenvolvimento/Fasciculuum/fasciculuumdtb/
+newgrp docker
+sudo usermod -aG docker $(whoami)
+sudo chmod +x fasciculuumdtb.sh
+./install.sh
+./install.sh -l -c dark
+sudo chmod +x install.sh
+cd WhiteSur-gtk-theme-master/
+./docker.sh
+sudo chmod +x docker.sh
+sudo chmod 777 /usr/share/fonts
+./install.sh -l -c light -t all
+plank
+sudo apt-get install -y plank

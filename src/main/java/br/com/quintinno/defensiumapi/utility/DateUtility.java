@@ -8,8 +8,20 @@ public class DateUtility {
     public static final String DATA_FORMATO_DDMMAAAAHHMMSS = "dd/MM/yyyy HH:mm:ss";
     public static final String DATA_FORMATO_DDMMAAAA = "dd/MM/yyyy";
 
+    private DateUtility() {
+        throw new UnsupportedOperationException("Essa classe não permite instâncias!");
+    }
+
     public static String getDataHoraFormatada(LocalDateTime localDateTime, String format) {
-        return localDateTime.now().format(DateTimeFormatter.ofPattern(format));
+        return localDateTime.format(DateTimeFormatter.ofPattern(format));
+    }
+
+    public static LocalDateTime getDataHora() {
+        return LocalDateTime.now();
+    }
+
+    public static String getDataHoraFormatada() {
+        return getDataHora().format(DateTimeFormatter.ofPattern(DATA_FORMATO_DDMMAAAAHHMMSS));
     }
 
 }

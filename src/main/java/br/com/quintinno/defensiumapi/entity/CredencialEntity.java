@@ -1,6 +1,7 @@
 package br.com.quintinno.defensiumapi.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -58,7 +59,12 @@ public class CredencialEntity {
     @Column(name = "DATA_DELECAO", updatable = false)
     private LocalDateTime dataDelecao;
 
-    public CredencialEntity() { }
+    public CredencialEntity() {
+        this.codePublic = UUID.randomUUID().toString();
+        this.dataCriacao = LocalDateTime.now();
+        this.dataEdicao = LocalDateTime.now();
+        this.active = true;
+    }
 
     public Long getCode() {
         return code;
