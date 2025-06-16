@@ -6,5 +6,6 @@ public enum TipoOperacaoEnumeration {
     UPDATE,
     DELETE,
     INATIVAR,
-    ATIVAR
+    ATIVAR,
+    FINDALL
 }

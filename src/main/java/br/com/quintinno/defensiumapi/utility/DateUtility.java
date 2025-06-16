@@ -20,4 +20,8 @@ public class DateUtility {
         return LocalDateTime.now();
     }
 
+    public static String getDataHoraFormatada() {
+        return getDataHora().format(DateTimeFormatter.ofPattern(DATA_FORMATO_DDMMAAAAHHMMSS));
+    }
+
 }

@@ -66,21 +66,6 @@ public class CredencialEntity {
         this.active = true;
     }
 
-    public CredencialEntity(CategoriaCredencialEntity categoriaCredencialEntity, PessoaEntity pessoaEntity,
-            String identificador, String senha, String descricao, String link, String observacao, Boolean active,
-            LocalDateTime dataCriacao, LocalDateTime dataEdicao) {
-        this.categoriaCredencialEntity = categoriaCredencialEntity;
-        this.pessoaEntity = pessoaEntity;
-        this.identificador = identificador;
-        this.senha = senha;
-        this.descricao = descricao;
-        this.link = link;
-        this.observacao = observacao;
-        this.active = active;
-        this.dataCriacao = dataCriacao;
-        this.dataEdicao = dataEdicao;
-    }
-
     public Long getCode() {
         return code;
     }
