@@ -20,8 +20,8 @@ public class Application {
 	@GetMapping
 	public String getMensagem() {
 		HashMap apiMap = new HashMap<>();
-			apiMap.put("APPLICATION", "DEFENSIUMAPI ");
-			apiMap.put("VERSION", "v1.0.0 ");
+			apiMap.put("APPLICATION", "DEFENSIUMAPI");
+			apiMap.put("VERSION", "v1.0.0");
 			apiMap.put("PORT", "8080");
 		return apiMap.toString();
 	}
