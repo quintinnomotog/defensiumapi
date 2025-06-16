@@ -12,4 +12,8 @@ public class DateUtility {
         return localDateTime.now().format(DateTimeFormatter.ofPattern(format));
     }
 
+    public static LocalDateTime getDataHora() {
+        return LocalDateTime.now();
+    }
+
 }
