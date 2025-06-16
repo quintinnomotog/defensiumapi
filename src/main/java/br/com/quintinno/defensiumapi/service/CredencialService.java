@@ -19,8 +19,9 @@ public class CredencialService {
     private CredencialRepository credencialRepository;
 
     public CredencialResponseTransfer create(CredencialRequestTransfer credencialRequestTransfer) {
-        // Validar os campos de entrada obrigatórios
-        logger.info("Persistindo dados na Base de Dados");
+        // Validar se reristro duplicado (Mesma: Categoria, Pessoa, identificador)
+        // Tratar: HttpMessageNotReadableException, InvalidDataAccessApiUsageException, 
+        logger.info("Persistindo nova Credencial na Base de Dados");
         return CredencialMapper
                 .toCredencialResponseTransfer(
                         this.credencialRepository.save(CredencialMapper.toCredencialEntity(credencialRequestTransfer)));

@@ -2,17 +2,27 @@ package br.com.quintinno.defensiumapi.tranfer;
 
 import br.com.quintinno.defensiumapi.entity.CategoriaCredencialEntity;
 import br.com.quintinno.defensiumapi.entity.PessoaEntity;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class CredencialRequestTransfer {
 
+    @Valid
+    @NotNull(message = "Necessário informar campo obrigatório!")
     private CategoriaCredencialEntity categoriaCredencialEntity;
 
+    @Valid
+    @NotNull(message = "Necessário informar campo obrigatório!")
     private PessoaEntity pessoaEntity;
 
+    @NotBlank(message = "Necessário informar campo obrigatório!")
     private String identificador;
 
+    @NotBlank(message = "Necessário informar campo obrigatório!")
     private String senha;
 
+    @NotBlank(message = "Necessário informar campo obrigatório!")
     private String descricao;
 
     private String link;

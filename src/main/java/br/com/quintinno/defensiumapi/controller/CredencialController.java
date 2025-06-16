@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.quintinno.defensiumapi.service.CredencialService;
 import br.com.quintinno.defensiumapi.tranfer.CredencialRequestTransfer;
 import br.com.quintinno.defensiumapi.tranfer.CredencialResponseTransfer;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/defensium/credencial")
@@ -20,7 +21,7 @@ public class CredencialController {
     private CredencialService credencialService;
 
     @PostMapping
-    public ResponseEntity<CredencialResponseTransfer> create(@RequestBody CredencialRequestTransfer credencialRequestTransfer) {
+    public ResponseEntity<CredencialResponseTransfer> create(@RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(this.credencialService.create(credencialRequestTransfer));
     }
