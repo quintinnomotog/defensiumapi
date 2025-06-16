@@ -25,8 +25,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/defensium/credencial")
 public class CredencialController {
 
-    @Autowired
     private CredencialService credencialService;
+
+    public CredencialController() {
+        this.credencialService = new CredencialService();
+    }
 
     @PostMapping
     public ResponseEntity<CredencialResponseTransfer> create(@RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
