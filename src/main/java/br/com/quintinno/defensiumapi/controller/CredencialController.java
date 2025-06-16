@@ -35,9 +35,9 @@ public class CredencialController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponseTransfer> findAll() {
+    public ResponseEntity<RestResponseTransfer<CredencialResponseTransfer>> findAll() {
         List<CredencialResponseTransfer> credencialResponseTransferList = this.credencialService.findAll();
-        RestResponseTransfer restResponseTransfer = getRestResponseTransfer(credencialResponseTransferList);
+        RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = getRestResponseTransfer(credencialResponseTransferList);
         return ResponseEntity.status(HttpStatus.FOUND).body(restResponseTransfer);
     }
 
