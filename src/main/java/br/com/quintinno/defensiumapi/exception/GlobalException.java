@@ -68,4 +68,12 @@ public class GlobalException {
         return String.join("; ", mensagemList);
     }
 
+    @ExceptionHandler(NegocioException.class)
+    public ResponseEntity<ErrorResponseTransfer> negocioException(NegocioException negocioException) {
+        ErrorResponseTransfer errorResponseTransfer = new ErrorResponseTransfer(
+                negocioException.getMessage(),
+                this.getDataHora());
+        return new ResponseEntity<>(errorResponseTransfer, HttpStatus.CONFLICT);
+    }
+
 }
