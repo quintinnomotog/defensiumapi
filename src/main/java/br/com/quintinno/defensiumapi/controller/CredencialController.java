@@ -25,11 +25,15 @@ import jakarta.validation.Valid;
 @RequestMapping("/defensium/credencial")
 public class CredencialController {
 
-    @Autowired
-    private CredencialService credencialService;
+    private final CredencialService credencialService;
+
+    public CredencialController(CredencialService credencialService) {
+        this.credencialService = credencialService;
+    }
 
     @PostMapping
-    public ResponseEntity<CredencialResponseTransfer> create(@RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
+    public ResponseEntity<CredencialResponseTransfer> create(
+            @RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(this.credencialService.create(credencialRequestTransfer));
     }
@@ -37,24 +41,26 @@ public class CredencialController {
     @GetMapping
     public ResponseEntity<RestResponseTransfer<CredencialResponseTransfer>> findAll() {
         List<CredencialResponseTransfer> credencialResponseTransferList = this.credencialService.findAll();
-        RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = getFindAllRestResponseTransfer(credencialResponseTransferList);
+        RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = getFindAllRestResponseTransfer(
+                credencialResponseTransferList);
         return ResponseEntity.status(HttpStatus.FOUND).body(restResponseTransfer);
     }
 
     @PutMapping("/{codePublic}")
     public ResponseEntity<CredencialResponseTransfer> update(
-        @PathVariable("codePublic") String codePublic,
-        @RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
-            credencialRequestTransfer.setCodePublicCredencial(codePublic);
+            @PathVariable("codePublic") String codePublic,
+            @RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
+        credencialRequestTransfer.setCodePublicCredencial(codePublic);
         return ResponseEntity.ok().body(this.credencialService.update(credencialRequestTransfer));
     }
 
-    private RestResponseTransfer<CredencialResponseTransfer> getFindAllRestResponseTransfer(List<CredencialResponseTransfer> credencialResponseTransferList) {
+    private RestResponseTransfer<CredencialResponseTransfer> getFindAllRestResponseTransfer(
+            List<CredencialResponseTransfer> credencialResponseTransferList) {
         RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = new RestResponseTransfer<>();
-            restResponseTransfer.setMensagem("Dados Recuperados com Sucesso!");
-            restResponseTransfer.setDataHora(DateUtility.getDataHoraFormatada());
-            restResponseTransfer.setObjectList(credencialResponseTransferList);
-            restResponseTransfer.setTipoOperacaoEnumeration(TipoOperacaoEnumeration.FINDALL);
+        restResponseTransfer.setMensagem("Dados Recuperados com Sucesso!");
+        restResponseTransfer.setDataHora(DateUtility.getDataHoraFormatada());
+        restResponseTransfer.setObjectList(credencialResponseTransferList);
+        restResponseTransfer.setTipoOperacaoEnumeration(TipoOperacaoEnumeration.FINDALL);
         return restResponseTransfer;
     }
 
