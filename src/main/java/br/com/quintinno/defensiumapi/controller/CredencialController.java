@@ -25,11 +25,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/defensium/credencial")
 public class CredencialController {
 
+    @Autowired
     private CredencialService credencialService;
-
-    public CredencialController() {
-        this.credencialService = new CredencialService();
-    }
 
     @PostMapping
     public ResponseEntity<CredencialResponseTransfer> create(@RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
@@ -40,7 +37,7 @@ public class CredencialController {
     @GetMapping
     public ResponseEntity<RestResponseTransfer<CredencialResponseTransfer>> findAll() {
         List<CredencialResponseTransfer> credencialResponseTransferList = this.credencialService.findAll();
-        RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = getRestResponseTransfer(credencialResponseTransferList);
+        RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = getFindAllRestResponseTransfer(credencialResponseTransferList);
         return ResponseEntity.status(HttpStatus.FOUND).body(restResponseTransfer);
     }
 
@@ -52,7 +49,7 @@ public class CredencialController {
         return ResponseEntity.ok().body(this.credencialService.update(credencialRequestTransfer));
     }
 
-    private RestResponseTransfer<CredencialResponseTransfer> getRestResponseTransfer(List<CredencialResponseTransfer> credencialResponseTransferList) {
+    private RestResponseTransfer<CredencialResponseTransfer> getFindAllRestResponseTransfer(List<CredencialResponseTransfer> credencialResponseTransferList) {
         RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = new RestResponseTransfer<>();
             restResponseTransfer.setMensagem("Dados Recuperados com Sucesso!");
             restResponseTransfer.setDataHora(DateUtility.getDataHoraFormatada());
