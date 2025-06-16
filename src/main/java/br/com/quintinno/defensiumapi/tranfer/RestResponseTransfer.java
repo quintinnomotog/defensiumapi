@@ -3,6 +3,7 @@ package br.com.quintinno.defensiumapi.tranfer;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.quintinno.defensiumapi.enumeration.TipoOperacaoEnumeration;
 import br.com.quintinno.defensiumapi.utility.DateUtility;
 
 public class RestResponseTransfer<T> {
@@ -11,7 +12,7 @@ public class RestResponseTransfer<T> {
 
     private String dataHora;
 
-    private String operacao;
+    private TipoOperacaoEnumeration tipoOperacaoEnumeration;
 
     private T object;
 
@@ -45,14 +46,6 @@ public class RestResponseTransfer<T> {
         this.dataHora = dataHora;
     }
 
-    public String getOperacao() {
-        return operacao;
-    }
-
-    public void setOperacao(String operacao) {
-        this.operacao = operacao;
-    }
-
     public T getObject() {
         return object;
     }
@@ -67,6 +60,14 @@ public class RestResponseTransfer<T> {
 
     public void setObjectList(List<T> objectList) {
         this.objectList = objectList;
+    }
+
+    public TipoOperacaoEnumeration getTipoOperacaoEnumeration() {
+        return tipoOperacaoEnumeration;
+    }
+
+    public void setTipoOperacaoEnumeration(TipoOperacaoEnumeration tipoOperacaoEnumeration) {
+        this.tipoOperacaoEnumeration = tipoOperacaoEnumeration;
     }
 
 }

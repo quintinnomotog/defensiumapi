@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.quintinno.defensiumapi.entity.PessoaEntity;
+import br.com.quintinno.defensiumapi.enumeration.TipoOperacaoEnumeration;
 import br.com.quintinno.defensiumapi.mapper.PessoaMapper;
 import br.com.quintinno.defensiumapi.repository.PessoaRepository;
 import br.com.quintinno.defensiumapi.tranfer.PessoaRequestTranfer;
@@ -40,11 +41,11 @@ public class PessoaService {
     public RestResponseTransfer inativarPessoa(String codePublic) {
         PessoaEntity pessoaEntity = this.pessoaRepository.findByCodePublic(codePublic);
         if (pessoaEntity == null) {
-            throw new EntityNotFoundException("Pessoa não Encontrada!");
+            new EntityNotFoundException("Pessoa não Encontrada!");
         }
         pessoaEntity.setActive(false);
         RestResponseTransfer restResponseTransfer = new RestResponseTransfer<PessoaResponseTransfer>();
-            restResponseTransfer.setOperacao("UPDATE");
+            restResponseTransfer.setTipoOperacaoEnumeration(TipoOperacaoEnumeration.INATIVAR);
             restResponseTransfer.setMensagem("Pessoa Inativada com Sucesso!");
             restResponseTransfer.setObject(PessoaMapper.fromPessoaResponseTransfer(pessoaEntity));
         this.pessoaRepository.save(pessoaEntity);
