@@ -1,6 +1,7 @@
 package br.com.quintinno.defensiumapi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,9 +50,10 @@ public class CredencialService {
     }
 
     public CredencialResponseTransfer update(CredencialRequestTransfer credencialRequestTransfer) {
-        CredencialEntity credencialEntityOptional = this.credencialRepository
-                .findByCodePublic(credencialRequestTransfer.getCodePublicCredencial())
-                .orElseThrow(() -> new NegocioException("Credencial não encontrada!"));
+        Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository.findByCodePublic(credencialRequestTransfer.getCodePublicCredencial());
+        if (!credencialEntityOptional.isPresent()) {
+            new NegocioException("Credencial não encontrada!")
+        }
         if (isRegistroDuplicado(credencialRequestTransfer)) {
             throw new NegocioException("Essa Credencial já foi cadastrada!");
         }

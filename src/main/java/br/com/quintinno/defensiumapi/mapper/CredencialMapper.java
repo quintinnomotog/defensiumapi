@@ -10,6 +10,8 @@ import br.com.quintinno.defensiumapi.utility.DateUtility;
 
 public class CredencialMapper {
 
+    public CredencialMapper() { }
+
     public static CredencialEntity toCredencialEntity(CredencialRequestTransfer credencialRequestTransfer) {
         CredencialEntity credencialEntity = new CredencialEntity();
             credencialEntity.setActive(true);
