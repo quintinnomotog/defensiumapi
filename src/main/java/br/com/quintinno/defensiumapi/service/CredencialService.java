@@ -54,9 +54,6 @@ public class CredencialService {
         if (!credencialEntityOptional.isPresent()) {
             new NegocioException("Credencial não encontrada!");
         }
-        if (isRegistroDuplicado(credencialRequestTransfer)) {
-            throw new NegocioException("Essa Credencial já foi cadastrada!");
-        }
         return CredencialMapper
                 .toCredencialResponseTransfer(
                         this.credencialRepository.save(
