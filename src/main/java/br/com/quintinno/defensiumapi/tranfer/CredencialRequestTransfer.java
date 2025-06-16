@@ -31,8 +31,6 @@ public class CredencialRequestTransfer {
 
     private String codePublicCredencial;
 
-    public CredencialRequestTransfer() { }
-
     public CategoriaCredencialEntity getCategoriaCredencialEntity() {
         return categoriaCredencialEntity;
     }

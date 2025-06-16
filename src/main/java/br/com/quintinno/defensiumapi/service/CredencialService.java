@@ -52,7 +52,7 @@ public class CredencialService {
     public CredencialResponseTransfer update(CredencialRequestTransfer credencialRequestTransfer) {
         Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository.findByCodePublic(credencialRequestTransfer.getCodePublicCredencial());
         if (!credencialEntityOptional.isPresent()) {
-            new NegocioException("Credencial não encontrada!")
+            new NegocioException("Credencial não encontrada!");
         }
         if (isRegistroDuplicado(credencialRequestTransfer)) {
             throw new NegocioException("Essa Credencial já foi cadastrada!");

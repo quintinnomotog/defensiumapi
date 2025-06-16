@@ -1,7 +1,6 @@
 package br.com.quintinno.defensiumapi.mapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import br.com.quintinno.defensiumapi.entity.CredencialEntity;
 import br.com.quintinno.defensiumapi.tranfer.CredencialRequestTransfer;
@@ -10,7 +9,9 @@ import br.com.quintinno.defensiumapi.utility.DateUtility;
 
 public class CredencialMapper {
 
-    public CredencialMapper() { }
+    private CredencialMapper() {
+        throw new UnsupportedOperationException("Essa classe não permite instâncias!");
+    }
 
     public static CredencialEntity toCredencialEntity(CredencialRequestTransfer credencialRequestTransfer) {
         CredencialEntity credencialEntity = new CredencialEntity();
@@ -44,7 +45,7 @@ public class CredencialMapper {
         return credencialEntityList
                 .stream()
                 .map(CredencialMapper::toCredencialResponseTransfer)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }
