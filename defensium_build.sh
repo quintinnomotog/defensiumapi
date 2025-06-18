@@ -1,3 +1,5 @@
+git fetch && git pull
+
 git checkout branch main
 
 mvn clean install package -DskipTests
