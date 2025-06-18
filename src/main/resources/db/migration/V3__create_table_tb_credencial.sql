@@ -25,3 +25,10 @@ engine=innodb
 default charset=utf8mb4
 collate=utf8mb4_0900_ai_ci
 comment 'Representa de uma Credencial';
+
+/*
+drop table if exists db_defensium.flyway_schema_history cascade;
+drop table if exists db_defensium.tb_credencial cascade;
+drop table if exists db_defensium.tb_categoria_credencial cascade;
+drop table if exists db_defensium.tb_pessoa cascade;
+*/
