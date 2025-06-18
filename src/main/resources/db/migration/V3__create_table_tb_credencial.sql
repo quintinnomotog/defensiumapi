@@ -13,10 +13,10 @@ create table if not exists tb_credencial (
 	senha varchar(60) null comment 'Representa o relacionamento com a Senha (chave) da Credencial',
 	link varchar(255) null comment 'Representa o link de acesso (quando website)',
 	observacao varchar(255) null comment 'Representa uma observação pertinente da Credencial',
-	active boolean not null comment 'Indica se um determinado registro está ativo ou inativo no sistema',
-	data_criacao datetime not null comment 'Representa a Data de Criação do Registro',
+	active boolean default true not null comment 'Indica se um determinado registro está ativo ou inativo no sistema',
+	data_criacao datetime default current_timestamp not null comment 'Representa a Data de Criação do Registro',
+	data_edicao datetime default current_timestamp null comment 'Representa a Data de Deleção do Registro',
 	data_delecao datetime null comment 'Representa a Data de Edição do Registro',
-	data_edicao datetime null comment 'Representa a Data de Deleção do Registro',
 	constraint pk_pessoa primary key (code),
 	constraint fk_credencial_categoria_credencial foreign key (id_categoria_credencial) references tb_categoria_credencial (code),
 	constraint fk_credencial_categoria_pessoa foreign key (id_pessoa) references tb_pessoa (code)

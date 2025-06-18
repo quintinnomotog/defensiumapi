@@ -7,10 +7,10 @@ create table if not exists tb_pessoa (
 	code bigint not null auto_increment comment 'Identificador privado e único da tabela',
 	code_public varchar(255) not null comment 'Identificador público e único da tabela',
 	nome varchar(100) not null comment 'Representa o nome da uma determinada pessoa',
-	active boolean not null comment 'Indica se um determinado registro está ativo ou inativo no sistema',
-	data_criacao datetime not null comment 'Representa a Data de Criação do Registro',
+	active boolean default true not null comment 'Indica se um determinado registro está ativo ou inativo no sistema',
+	data_criacao datetime default current_timestamp not null comment 'Representa a Data de Criação do Registro',
+	data_edicao datetime default current_timestamp null comment 'Representa a Data de Deleção do Registro',
 	data_delecao datetime null comment 'Representa a Data de Edição do Registro',
-	data_edicao datetime null comment 'Representa a Data de Deleção do Registro',
 	constraint pk_pessoa primary key (code)
 )
 engine=innodb
