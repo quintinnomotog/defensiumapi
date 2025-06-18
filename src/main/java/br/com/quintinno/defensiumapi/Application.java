@@ -28,14 +28,14 @@ public class Application implements CommandLineRunner {
 	public String getMensagem() {
 		HashMap apiMap = new HashMap<>();
 			apiMap.put("APPLICATION", "DEFENSIUMAPI");
-			apiMap.put("VERSION", "v1.0.0");
 			apiMap.put("PORT", "8080");
+			apiMap.put("VERSION", "v1.0.0");
 		return apiMap.toString();
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.error(getMensagem());
+		logger.warn(getMensagem());
 	}
 
 }
