@@ -1,6 +1,6 @@
 set -e
 
-git fetch && git checkout main && git pull &
+git reset --hard && git fetch && git checkout main && git pull &
 
 nohup mvn clean install package -DskipTests > ../defensiumlog/mvn.log 2>&1 &
 
