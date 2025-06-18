@@ -1,6 +1,6 @@
 git fetch && git pull
 
-git checkout branch main
+git checkout main
 
 mvn clean install package -DskipTests
 
