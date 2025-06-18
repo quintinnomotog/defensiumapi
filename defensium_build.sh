@@ -1,9 +1,7 @@
 set -e
 
-git fetch
-git checkout main
-git pull
+git fetch && git checkout main && git pull &
 
-mvn clean install package -DskipTests
+nohup mvn clean install package -DskipTests > ../defensiumlog/mvn.log 2>&1 &
 
-java -jar target/defensiumapi-0.0.1-SNAPSHOT.jar
+nohup java -jar target/defensiumapi-0.0.1-SNAPSHOT.jar --spring.profiles.active=production > ../defensiumlog/log.txt 2>&1 &

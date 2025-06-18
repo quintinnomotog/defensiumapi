@@ -2,16 +2,23 @@ package br.com.quintinno.defensiumapi;
 
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.quintinno.defensiumapi.service.CredencialService;
+
 @SpringBootApplication
 @RestController
 @RequestMapping("/")
-public class Application {
+public class Application implements CommandLineRunner {
+
+	private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -24,6 +31,11 @@ public class Application {
 			apiMap.put("VERSION", "v1.0.0");
 			apiMap.put("PORT", "8080");
 		return apiMap.toString();
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		logger.error(getMensagem());
 	}
 
 }
