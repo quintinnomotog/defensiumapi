@@ -50,7 +50,6 @@ public class CredencialService {
         return CredencialMapper.toCredencialResponseTransfer(credencialEntityList);
     }
 
-    // FIXME: Corrigir erro de persistir nova Credencial ao tentar atualizar
     public CredencialResponseTransfer update(CredencialRequestTransfer credencialRequestTransfer) {
         Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository.findByCodePublic(credencialRequestTransfer.getCodePublicCredencial());
         if (!credencialEntityOptional.isPresent()) {
