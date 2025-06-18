@@ -20,11 +20,7 @@ create table if not exists tb_credencial (
 	constraint pk_pessoa primary key (code),
 	constraint fk_credencial_categoria_credencial foreign key (id_categoria_credencial) references tb_categoria_credencial (code),
 	constraint fk_credencial_categoria_pessoa foreign key (id_pessoa) references tb_pessoa (code)
-)
-engine=innodb
-default charset=utf8mb4
-collate=utf8mb4_0900_ai_ci
-comment 'Representa de uma Credencial';
+) comment 'Representa de uma Credencial';
 
 /*
 drop table if exists db_defensium.flyway_schema_history cascade;

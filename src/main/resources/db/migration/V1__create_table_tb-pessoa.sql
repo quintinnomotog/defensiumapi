@@ -12,8 +12,4 @@ create table if not exists tb_pessoa (
 	data_edicao datetime default current_timestamp null comment 'Representa a Data de Deleção do Registro',
 	data_delecao datetime null comment 'Representa a Data de Edição do Registro',
 	constraint pk_pessoa primary key (code)
-)
-engine=innodb
-default charset=utf8mb4
-collate=utf8mb4_0900_ai_ci
-comment 'Representa uma pessoa do sistema';
+) comment 'Representa uma pessoa do sistema';
