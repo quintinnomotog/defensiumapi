@@ -26,6 +26,7 @@ public class CredencialService {
     // FIXME: Tratar: HttpMessageNotReadableException;
     // HttpRequestMethodNotSupportedException;
     // InvalidDataAccessApiUsageException;
+    // FIXME: Precisa criptografar a senha do usuario antes de persistir
     public CredencialResponseTransfer create(CredencialRequestTransfer credencialRequestTransfer) {
         if (isRegistroDuplicado(credencialRequestTransfer)) {
             throw new NegocioException("Essa Credencial já foi cadastrada!");
@@ -49,15 +50,15 @@ public class CredencialService {
         return CredencialMapper.toCredencialResponseTransfer(credencialEntityList);
     }
 
+    // FIXME: Corrigir erro de persistir nova Credencial ao tentar atualizar
     public CredencialResponseTransfer update(CredencialRequestTransfer credencialRequestTransfer) {
         Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository.findByCodePublic(credencialRequestTransfer.getCodePublicCredencial());
         if (!credencialEntityOptional.isPresent()) {
-            new NegocioException("Credencial não encontrada!");
+            throw new NegocioException("Credencial não encontrada!");
         }
-        return CredencialMapper
-                .toCredencialResponseTransfer(
-                        this.credencialRepository.save(
-                                CredencialMapper.toCredencialEntity(credencialRequestTransfer)));
+        CredencialEntity credencialEntity = CredencialMapper.toCredencialEntity(credencialRequestTransfer, credencialEntityOptional.get());
+        this.credencialRepository.save(credencialEntity);
+        return CredencialMapper.toCredencialResponseTransfer(credencialEntity);
     }
 
 }

@@ -2,9 +2,9 @@ package br.com.quintinno.defensiumapi.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +23,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/defensium/credencial")
+@CrossOrigin(origins = "*")
 public class CredencialController {
 
     private final CredencialService credencialService;
@@ -43,7 +44,7 @@ public class CredencialController {
         List<CredencialResponseTransfer> credencialResponseTransferList = this.credencialService.findAll();
         RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = getFindAllRestResponseTransfer(
                 credencialResponseTransferList);
-        return ResponseEntity.status(HttpStatus.FOUND).body(restResponseTransfer);
+        return ResponseEntity.status(HttpStatus.OK).body(restResponseTransfer);
     }
 
     @PutMapping("/{codePublic}")

@@ -48,4 +48,16 @@ public class CredencialMapper {
                 .toList();
     }
 
+    public static CredencialEntity toCredencialEntity(CredencialRequestTransfer credencialRequestTransfer, CredencialEntity credencialEntity) {
+            credencialEntity.setCategoriaCredencialEntity(credencialRequestTransfer.getCategoriaCredencialEntity());
+            credencialEntity.setDataEdicao(DateUtility.getDataHora());
+            credencialEntity.setDescricao(credencialRequestTransfer.getDescricao());
+            credencialEntity.setIdentificador(credencialRequestTransfer.getIdentificador());
+            credencialEntity.setLink(credencialRequestTransfer.getLink());
+            credencialEntity.setObservacao(credencialRequestTransfer.getObservacao());
+            credencialEntity.setPessoaEntity(credencialRequestTransfer.getPessoaEntity());
+            credencialEntity.setSenha(credencialRequestTransfer.getSenha());
+        return credencialEntity;
+    }
+
 }

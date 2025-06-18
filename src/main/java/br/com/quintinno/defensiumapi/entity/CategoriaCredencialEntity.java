@@ -18,10 +18,10 @@ public class CategoriaCredencialEntity {
     @Column(name = "CODE", updatable = false, nullable = false)
     private Long code;
 
-    @Column(name = "CODE_PUBLIC", updatable = false, nullable = false)
+    @Column(name = "CODE_PUBLIC", unique = true, updatable = false, nullable = false)
     private String codePublic;
 
-    @Column(name = "DESCRICAO", nullable = false)
+    @Column(name = "DESCRICAO", unique = true, nullable = false)
     private String descricao;
 
     @Column(name = "DATA_CRIACAO", updatable = false)
