@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.com.quintinno.defensiumapi.entity.CategoriaCredencialEntity;
+import br.com.quintinno.defensiumapi.mapper.CategoriaCredencialMapper;
 import br.com.quintinno.defensiumapi.repository.CategoriaCredencialRepository;
+import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialResponseTransfer;
 
 @Service
 public class CategoriaCredencialService {
@@ -16,8 +17,9 @@ public class CategoriaCredencialService {
         this.categoriaCredencialRepository = categoriaCredencialRepository;
     }
 
-    public List<CategoriaCredencialEntity> getFindAll() {
-        return this.categoriaCredencialRepository.findAll();
+    public List<CategoriaCredencialResponseTransfer> getFindAll() {
+        return CategoriaCredencialMapper
+                .toCategoriaCredencialResponseTransfer(this.categoriaCredencialRepository.findAll());
     }
 
 }

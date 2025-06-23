@@ -2,14 +2,18 @@ package br.com.quintinno.defensiumapi.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.quintinno.defensiumapi.entity.CategoriaCredencialEntity;
+import br.com.quintinno.defensiumapi.enumeration.TipoOperacaoEnumeration;
 import br.com.quintinno.defensiumapi.service.CategoriaCredencialService;
+import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialResponseTransfer;
+import br.com.quintinno.defensiumapi.tranfer.RestResponseTransfer;
+import br.com.quintinno.defensiumapi.utility.DateUtility;
 
 @RestController
 @RequestMapping("/defensium/categoria-credencial")
@@ -23,8 +27,19 @@ public class CategoriaCredencialController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriaCredencialEntity>> getFindAll() {
-        return ResponseEntity.ok().body(this.categoriaCredencialService.getFindAll());
+    public ResponseEntity<RestResponseTransfer<CategoriaCredencialResponseTransfer>> getFindAll() {
+        RestResponseTransfer<CategoriaCredencialResponseTransfer> restResponseTransfer = getFindAllRestResponseTransfer(this.categoriaCredencialService.getFindAll());
+        return ResponseEntity.status(HttpStatus.OK).body(restResponseTransfer);
+    }
+
+    private RestResponseTransfer<CategoriaCredencialResponseTransfer> getFindAllRestResponseTransfer(
+            List<CategoriaCredencialResponseTransfer> categoriaCredencialResponseTransferList) {
+        RestResponseTransfer<CategoriaCredencialResponseTransfer> restResponseTransfer = new RestResponseTransfer<>();
+            restResponseTransfer.setMensagem("Dados Recuperados com Sucesso!");
+            restResponseTransfer.setDataHora(DateUtility.getDataHoraFormatada());
+            restResponseTransfer.setObjectList(categoriaCredencialResponseTransferList);
+            restResponseTransfer.setTipoOperacaoEnumeration(TipoOperacaoEnumeration.FINDALL);
+        return restResponseTransfer;
     }
 
 }

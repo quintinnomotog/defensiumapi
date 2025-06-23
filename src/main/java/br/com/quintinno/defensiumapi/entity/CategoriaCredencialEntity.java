@@ -35,6 +35,11 @@ public class CategoriaCredencialEntity {
 
     public CategoriaCredencialEntity() { }
 
+    public CategoriaCredencialEntity(String descricao, LocalDateTime dataCriacao) {
+        this.descricao = descricao;
+        this.dataCriacao = dataCriacao;
+    }
+
     public Long getCode() {
         return code;
     }
