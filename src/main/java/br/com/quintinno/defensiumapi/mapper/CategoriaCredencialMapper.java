@@ -25,6 +25,7 @@ public class CategoriaCredencialMapper {
     public static CategoriaCredencialResponseTransfer fromCategoriaCredencialResponseTransfer(
             CategoriaCredencialEntity categoriaCredencialEntity) {
         CategoriaCredencialResponseTransfer categoriaCredencialResponseTransfer = new CategoriaCredencialResponseTransfer();
+            categoriaCredencialResponseTransfer.setCode(categoriaCredencialEntity.getCode());
             categoriaCredencialResponseTransfer.setCodePublic(categoriaCredencialEntity.getCodePublic());
             categoriaCredencialResponseTransfer.setDescricao(categoriaCredencialEntity.getDescricao());
         return categoriaCredencialResponseTransfer;

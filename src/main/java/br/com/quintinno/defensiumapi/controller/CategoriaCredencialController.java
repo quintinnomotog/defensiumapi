@@ -27,9 +27,8 @@ public class CategoriaCredencialController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponseTransfer<CategoriaCredencialResponseTransfer>> getFindAll() {
-        RestResponseTransfer<CategoriaCredencialResponseTransfer> restResponseTransfer = getFindAllRestResponseTransfer(this.categoriaCredencialService.getFindAll());
-        return ResponseEntity.status(HttpStatus.OK).body(restResponseTransfer);
+    public ResponseEntity<List<CategoriaCredencialResponseTransfer>> getFindAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.categoriaCredencialService.getFindAll());
     }
 
     private RestResponseTransfer<CategoriaCredencialResponseTransfer> getFindAllRestResponseTransfer(
