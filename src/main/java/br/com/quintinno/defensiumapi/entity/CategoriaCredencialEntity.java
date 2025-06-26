@@ -24,6 +24,15 @@ public class CategoriaCredencialEntity {
     @Column(name = "DESCRICAO", unique = true, nullable = false)
     private String descricao;
 
+    @Column(name = "NOME_ICONE", length = 20)
+    private String nomeIcone;
+
+    @Column(name = "COR_ICONE", length = 7)
+    private String corIcone;
+
+    @Column(name = "COR_FUNDO", length = 7)
+    private String corFundo;
+
     @Column(name = "DATA_CRIACAO", updatable = false)
     private LocalDateTime dataCriacao;
     
@@ -62,6 +71,30 @@ public class CategoriaCredencialEntity {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getNomeIcone() {
+        return nomeIcone;
+    }
+
+    public void setNomeIcone(String nomeIcone) {
+        this.nomeIcone = nomeIcone;
+    }
+
+    public String getCorIcone() {
+        return corIcone;
+    }
+
+    public void setCorIcone(String corIcone) {
+        this.corIcone = corIcone;
+    }
+
+    public String getCorFundo() {
+        return corFundo;
+    }
+
+    public void setCorFundo(String corFundo) {
+        this.corFundo = corFundo;
     }
 
     public LocalDateTime getDataCriacao() {

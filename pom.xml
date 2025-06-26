@@ -36,6 +36,10 @@
 
 	<properties>
 		<java.version>17</java.version>
+		<spring.datasource.url>jdbc:mysql://127.0.0.1:3306/db_defensium</spring.datasource.url>
+		<spring.datasource.username>defensium</spring.datasource.username>
+		<spring.datasource.password>defensium</spring.datasource.password>
+		<spring.datasource.driver-class-name>com.mysql.cj.jdbc.Driver</spring.datasource.driver-class-name>
 	</properties>
 
 	<dependencies>
@@ -88,10 +92,24 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>11.7.2</version>
+				<configuration>
+					<url>${spring.datasource.url}</url>
+					<user>${spring.datasource.username}</user>
+					<password>${spring.datasource.password}</password>
+					<driver>${spring.datasource.driver-class-name}</driver>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
