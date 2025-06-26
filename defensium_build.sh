@@ -12,8 +12,6 @@ LOG_APPLICATION_PATH="$LOG_DIR/$LOG_APPLICATION_FILE"
 
 nohup mvn clean install package -DskipTests > "$LOG_MAVEN_PATH" 2>&1 &
 
-wait
-
 nohup java -jar target/defensiumapi-0.0.1-SNAPSHOT.jar > "$LOG_APPLICATION_PATH" 2>&1 &
 
 sleep 2
