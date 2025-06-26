@@ -18,4 +18,4 @@ nohup java -jar target/defensiumapi-0.0.1-SNAPSHOT.jar > "$LOG_APPLICATION_PATH"
 
 sleep 2
 
-tail -f "$LOG_APPLICATION_PATH"
+tail -f -n 1000 "$LOG_APPLICATION_PATH"
