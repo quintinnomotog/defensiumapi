@@ -1,3 +1,5 @@
+git reset --hard
+
 git fetch && git pull
 
 mvn clean install package -DskipTests
