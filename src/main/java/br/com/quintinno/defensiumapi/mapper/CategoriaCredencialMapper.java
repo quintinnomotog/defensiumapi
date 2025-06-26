@@ -28,6 +28,9 @@ public class CategoriaCredencialMapper {
             categoriaCredencialResponseTransfer.setCode(categoriaCredencialEntity.getCode());
             categoriaCredencialResponseTransfer.setCodePublic(categoriaCredencialEntity.getCodePublic());
             categoriaCredencialResponseTransfer.setDescricao(categoriaCredencialEntity.getDescricao());
+            categoriaCredencialResponseTransfer.setCorFundo(categoriaCredencialEntity.getCorFundo());
+            categoriaCredencialResponseTransfer.setCorIcone(categoriaCredencialEntity.getCorIcone());
+            categoriaCredencialResponseTransfer.setNomeIcone(categoriaCredencialEntity.getNomeIcone());
         return categoriaCredencialResponseTransfer;
     }
 
