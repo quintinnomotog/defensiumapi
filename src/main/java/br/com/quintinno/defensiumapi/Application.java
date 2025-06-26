@@ -27,7 +27,7 @@ public class Application implements CommandLineRunner {
 		HashMap apiMap = new HashMap<>();
 			apiMap.put("APPLICATION", "DEFENSIUMAPI");
 			apiMap.put("PORT", "8080");
-			apiMap.put("VERSION", "v1.0.0");
+			apiMap.put("VERSION", "v1.4.0.0");
 		return apiMap.toString();
 	}
 
