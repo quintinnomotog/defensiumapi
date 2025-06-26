@@ -10,8 +10,6 @@ LOG_APPLICATION_FILE="DEFENSIUM_${TIMESTAMP}.log"
 LOG_MAVEN_PATH="$LOG_DIR/$LOG_MAVEN_FILE"
 LOG_APPLICATION_PATH="$LOG_DIR/$LOG_APPLICATION_FILE"
 
-git reset --hard && git fetch && git pull
-
 nohup mvn clean install package -DskipTests > "$LOG_MAVEN_PATH" 2>&1 &
 
 wait
