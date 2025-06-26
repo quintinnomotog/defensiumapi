@@ -6,11 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.quintinno.defensiumapi.enumeration.TipoOperacaoEnumeration;
 import br.com.quintinno.defensiumapi.service.CategoriaCredencialService;
+import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialRequestTransfer;
 import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialResponseTransfer;
 import br.com.quintinno.defensiumapi.tranfer.RestResponseTransfer;
 import br.com.quintinno.defensiumapi.utility.DateUtility;
@@ -29,6 +32,11 @@ public class CategoriaCredencialController {
     @GetMapping
     public ResponseEntity<List<CategoriaCredencialResponseTransfer>> getFindAll() {
         return ResponseEntity.status(HttpStatus.OK).body(this.categoriaCredencialService.getFindAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<CategoriaCredencialResponseTransfer> create(@RequestBody CategoriaCredencialRequestTransfer categoriaCredencialRequestTransfer) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.categoriaCredencialService.create(categoriaCredencialRequestTransfer));
     }
 
     private RestResponseTransfer<CategoriaCredencialResponseTransfer> getFindAllRestResponseTransfer(
