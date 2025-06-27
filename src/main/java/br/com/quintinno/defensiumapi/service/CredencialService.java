@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.quintinno.defensiumapi.client.CredenciumClient;
 import br.com.quintinno.defensiumapi.entity.CredencialEntity;
 import br.com.quintinno.defensiumapi.exception.NegocioException;
 import br.com.quintinno.defensiumapi.mapper.CredencialMapper;
@@ -22,15 +23,22 @@ public class CredencialService {
 
     @Autowired
     private CredencialRepository credencialRepository;
+    
+    @Autowired
+    private CredenciumClient credenciumClient;
 
     // FIXME: Tratar: HttpMessageNotReadableException;
     // HttpRequestMethodNotSupportedException;
     // InvalidDataAccessApiUsageException;
-    // FIXME: Precisa criptografar a senha do usuario antes de persistir
     public CredencialResponseTransfer create(CredencialRequestTransfer credencialRequestTransfer) {
         if (isRegistroDuplicado(credencialRequestTransfer)) {
             throw new NegocioException("Essa Credencial já foi cadastrada!");
         }
+        
+        logger.info("Criptografando senha via Credencium-Service");
+        String senhaCriptografada = credenciumClient.criptografarChaveSeguranca(credencialRequestTransfer.getSenha());
+        credencialRequestTransfer.setSenha(senhaCriptografada);
+        
         logger.info("Persistindo nova Credencial na Base de Dados!");
         return CredencialMapper
                 .toCredencialResponseTransfer(

@@ -5,15 +5,11 @@ import java.util.List;
 import br.com.quintinno.defensiumapi.entity.CategoriaCredencialEntity;
 import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialRequestTransfer;
 import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialResponseTransfer;
-import br.com.quintinno.defensiumapi.utility.DateUtility;
 
 public class CategoriaCredencialMapper {
 
-    public static CategoriaCredencialEntity toCategoriaCredencialEntity(
-            CategoriaCredencialRequestTransfer categoriaCredencialRequestTransfer) {
-        return new CategoriaCredencialEntity(
-                categoriaCredencialRequestTransfer.getDescricao(),
-                DateUtility.getDataHora());
+    public static CategoriaCredencialEntity toCategoriaCredencialEntity(CategoriaCredencialRequestTransfer categoriaCredencialRequestTransfer) {
+        return new CategoriaCredencialEntity(categoriaCredencialRequestTransfer.getDescricao());
     }
 
     public static List<CategoriaCredencialResponseTransfer> toCategoriaCredencialResponseTransfer(
@@ -28,6 +24,9 @@ public class CategoriaCredencialMapper {
             categoriaCredencialResponseTransfer.setCode(categoriaCredencialEntity.getCode());
             categoriaCredencialResponseTransfer.setCodePublic(categoriaCredencialEntity.getCodePublic());
             categoriaCredencialResponseTransfer.setDescricao(categoriaCredencialEntity.getDescricao());
+            categoriaCredencialResponseTransfer.setCorFundo(categoriaCredencialEntity.getCorFundo());
+            categoriaCredencialResponseTransfer.setCorIcone(categoriaCredencialEntity.getCorIcone());
+            categoriaCredencialResponseTransfer.setNomeIcone(categoriaCredencialEntity.getNomeIcone());
         return categoriaCredencialResponseTransfer;
     }
 

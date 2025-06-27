@@ -7,15 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.quintinno.defensiumapi.service.CredencialService;
-
 @SpringBootApplication
 @RestController
 @RequestMapping("/")
+@EnableFeignClients(basePackages = "br.com.quintinno.defensiumapi.client")
 public class Application implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(Application.class);
@@ -29,7 +29,7 @@ public class Application implements CommandLineRunner {
 		HashMap apiMap = new HashMap<>();
 			apiMap.put("APPLICATION", "DEFENSIUMAPI");
 			apiMap.put("PORT", "8080");
-			apiMap.put("VERSION", "v1.0.0");
+			apiMap.put("VERSION", "v1.4.0.0");
 		return apiMap.toString();
 	}
 

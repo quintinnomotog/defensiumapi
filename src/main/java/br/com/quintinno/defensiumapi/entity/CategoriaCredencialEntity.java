@@ -1,7 +1,9 @@
 package br.com.quintinno.defensiumapi.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+import br.com.quintinno.defensiumapi.utility.DateUtility;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,9 +46,11 @@ public class CategoriaCredencialEntity {
 
     public CategoriaCredencialEntity() { }
 
-    public CategoriaCredencialEntity(String descricao, LocalDateTime dataCriacao) {
+    public CategoriaCredencialEntity(String descricao) {
         this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
+        this.codePublic = UUID.randomUUID().toString();
+    	this.dataCriacao = DateUtility.getDataHora();
+    	this.dataEdicao = DateUtility.getDataHora();
     }
 
     public Long getCode() {
