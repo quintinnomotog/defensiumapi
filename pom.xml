@@ -36,10 +36,7 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<spring.datasource.url>jdbc:mysql://127.0.0.1:3306/db_defensium</spring.datasource.url>
-		<spring.datasource.username>defensium</spring.datasource.username>
-		<spring.datasource.password>defensium</spring.datasource.password>
-		<spring.datasource.driver-class-name>com.mysql.cj.jdbc.Driver</spring.datasource.driver-class-name>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -88,6 +85,10 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -103,14 +104,28 @@
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>11.7.2</version>
 				<configuration>
-					<url>${spring.datasource.url}</url>
-					<user>${spring.datasource.username}</user>
-					<password>${spring.datasource.password}</password>
-					<driver>${spring.datasource.driver-class-name}</driver>
+                <skip>true</skip>
 				</configuration>
+				<executions>
+					<execution>
+						<id>flyway-migrate</id>
+						<phase>none</phase>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
 	</build>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
