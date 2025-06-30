@@ -3,6 +3,7 @@ services:
     container_name: 'mysql-defensium'
     image: 'mysql:latest'
     environment:
+      - 'TZ=America/Sao_Paulo'
       - 'MYSQL_DATABASE=db_defensium'
       - 'MYSQL_PASSWORD=defensium'
       - 'MYSQL_ROOT_PASSWORD=defensium'
