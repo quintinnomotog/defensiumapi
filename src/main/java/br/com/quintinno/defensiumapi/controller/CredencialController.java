@@ -33,10 +33,8 @@ public class CredencialController {
     }
 
     @PostMapping
-    public ResponseEntity<CredencialResponseTransfer> create(
-            @RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(this.credencialService.create(credencialRequestTransfer));
+    public ResponseEntity<CredencialResponseTransfer> create(@RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.credencialService.create(credencialRequestTransfer));
     }
 
     @GetMapping

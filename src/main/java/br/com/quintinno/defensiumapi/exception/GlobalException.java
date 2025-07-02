@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -74,6 +75,15 @@ public class GlobalException {
                 negocioException.getMessage(),
                 this.getDataHora());
         return new ResponseEntity<>(errorResponseTransfer, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(InvalidDataAccessApiUsageException.class)
+    public ResponseEntity<ErrorResponseTransfer> invalidDataAccessApiUsageException(InvalidDataAccessApiUsageException invalidDataAccessApiUsageException) {
+        logger.warn("Recurso não encontrado: {}", invalidDataAccessApiUsageException.getMessage());
+        ErrorResponseTransfer errorResponseTransfer = new ErrorResponseTransfer(
+                invalidDataAccessApiUsageException.getMessage(),
+                this.getDataHora());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponseTransfer);
     }
 
 }

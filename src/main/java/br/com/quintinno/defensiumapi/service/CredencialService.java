@@ -13,6 +13,7 @@ import br.com.quintinno.defensiumapi.entity.CredencialEntity;
 import br.com.quintinno.defensiumapi.exception.NegocioException;
 import br.com.quintinno.defensiumapi.mapper.CredencialMapper;
 import br.com.quintinno.defensiumapi.repository.CredencialRepository;
+import br.com.quintinno.defensiumapi.repository.PessoaRepository;
 import br.com.quintinno.defensiumapi.tranfer.CredencialRequestTransfer;
 import br.com.quintinno.defensiumapi.tranfer.CredencialResponseTransfer;
 
@@ -27,10 +28,18 @@ public class CredencialService {
     @Autowired
     private CredenciumClient credenciumClient;
 
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
     // FIXME: Tratar: HttpMessageNotReadableException;
     // HttpRequestMethodNotSupportedException;
     // InvalidDataAccessApiUsageException;
     public CredencialResponseTransfer create(CredencialRequestTransfer credencialRequestTransfer) {
+    	
+    	if (isCadastrarPessoa(credencialRequestTransfer)) {
+            pessoaRepository.save(credencialRequestTransfer.getPessoaEntity());
+        }
+    	
         if (isRegistroDuplicado(credencialRequestTransfer)) {
             throw new NegocioException("Essa Credencial já foi cadastrada!");
         }
@@ -66,6 +75,12 @@ public class CredencialService {
         CredencialEntity credencialEntity = CredencialMapper.toCredencialEntity(credencialRequestTransfer, credencialEntityOptional.get());
         this.credencialRepository.save(credencialEntity);
         return CredencialMapper.toCredencialResponseTransfer(credencialEntity);
+    }
+
+    private boolean isCadastrarPessoa(CredencialRequestTransfer credencialRequestTransfer) {
+        return credencialRequestTransfer.getPessoaEntity() != null &&
+                credencialRequestTransfer.getPessoaEntity().getCode() == null &&
+                credencialRequestTransfer.getPessoaEntity().getNome() != null;
     }
 
 }

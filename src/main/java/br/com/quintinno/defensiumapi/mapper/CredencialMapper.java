@@ -38,6 +38,7 @@ public class CredencialMapper {
             credencialResponseTransfer.setDescricao(credencialEntity.getDescricao());
             credencialResponseTransfer.setObservacao(credencialEntity.getObservacao());
             credencialResponseTransfer.setDataOperacao(DateUtility.getDataHoraFormatada(credencialEntity.getDataCriacao(), DateUtility.DATA_FORMATO_DDMMAAAAHHMMSS));
+            credencialResponseTransfer.setNomePessoa(credencialEntity.getPessoaEntity().getNome());
         return credencialResponseTransfer;
     }
 
