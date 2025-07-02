@@ -31,6 +31,7 @@ public class PessoaMapper {
 
     public static PessoaResponseTransfer fromPessoaResponseTransfer(PessoaEntity pessoaEntity) {
         PessoaResponseTransfer pessoaResponseTransfer = new PessoaResponseTransfer(
+        		pessoaEntity.getCode(),
                 pessoaEntity.getCodePublic(),
                 pessoaEntity.getNome(),
                 DateUtility.getDataHoraFormatada(pessoaEntity.getDataCriacao(), DateUtility.DATA_FORMATO_DDMMAAAA),

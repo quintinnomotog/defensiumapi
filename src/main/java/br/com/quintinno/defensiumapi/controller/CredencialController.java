@@ -62,5 +62,12 @@ public class CredencialController {
         restResponseTransfer.setTipoOperacaoEnumeration(TipoOperacaoEnumeration.FINDALL);
         return restResponseTransfer;
     }
+    
+    @PostMapping("/descriptografar")
+    public ResponseEntity<CredencialResponseTransfer> descriptografarSenha(@RequestBody String codePublicCredencial) {
+    	CredencialRequestTransfer credencialRequestTransfer = new CredencialRequestTransfer();
+    		credencialRequestTransfer.setCodePublicCredencial(codePublicCredencial);
+        return ResponseEntity.status(HttpStatus.OK).body(new CredencialResponseTransfer(this.credencialService.recuperarSenhaDescriptografada(credencialRequestTransfer)));
+    }
 
 }

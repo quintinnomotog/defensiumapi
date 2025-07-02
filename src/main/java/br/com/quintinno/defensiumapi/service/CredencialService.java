@@ -2,6 +2,7 @@ package br.com.quintinno.defensiumapi.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.quintinno.defensiumapi.client.CredenciumClient;
 import br.com.quintinno.defensiumapi.entity.CredencialEntity;
+import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 import br.com.quintinno.defensiumapi.exception.NegocioException;
 import br.com.quintinno.defensiumapi.mapper.CredencialMapper;
 import br.com.quintinno.defensiumapi.repository.CredencialRepository;
@@ -35,9 +37,11 @@ public class CredencialService {
     // HttpRequestMethodNotSupportedException;
     // InvalidDataAccessApiUsageException;
     public CredencialResponseTransfer create(CredencialRequestTransfer credencialRequestTransfer) {
-    	
+        
     	if (isCadastrarPessoa(credencialRequestTransfer)) {
-            pessoaRepository.save(credencialRequestTransfer.getPessoaEntity());
+    		PessoaEntity pessoaEntity = credencialRequestTransfer.getPessoaEntity();
+    			pessoaEntity.setCodePublic(UUID.randomUUID().toString());
+            credencialRequestTransfer.setPessoaEntity(pessoaRepository.save(pessoaEntity));
         }
     	
         if (isRegistroDuplicado(credencialRequestTransfer)) {
@@ -81,6 +85,17 @@ public class CredencialService {
         return credencialRequestTransfer.getPessoaEntity() != null &&
                 credencialRequestTransfer.getPessoaEntity().getCode() == null &&
                 credencialRequestTransfer.getPessoaEntity().getNome() != null;
+    }
+    
+    public String recuperarSenhaDescriptografada(CredencialRequestTransfer credencialRequestTransfer) {
+    	Optional.ofNullable(credencialRequestTransfer.getCodePublicCredencial()).filter(code -> !code.isBlank()).orElseThrow(
+    			() -> new IllegalArgumentException("O código informado não existe na Base de Dados!"));
+    	Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository.findByCodePublic(credencialRequestTransfer.getCodePublicCredencial());
+    	if (credencialEntityOptional.isEmpty()) {
+    		throw new NegocioException("Credencial Não Encontrada!");
+    	}
+    	logger.info("Descriptografando senha via Credencium-Service");
+    	return credenciumClient.descriptografarChaveSeguranca(credencialEntityOptional.get().getSenha());
     }
 
 }

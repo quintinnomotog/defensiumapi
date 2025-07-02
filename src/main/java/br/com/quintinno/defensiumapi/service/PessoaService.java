@@ -1,6 +1,7 @@
 package br.com.quintinno.defensiumapi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,25 +31,25 @@ public class PessoaService {
     }
 
     public PessoaResponseTransfer update(PessoaRequestTranfer pessoaRequestTranfer) {
-        PessoaEntity pessoaEntity = this.pessoaRepository.findByCodePublic(pessoaRequestTranfer.getCodePublic());
-        if (pessoaEntity == null) {
+        Optional<PessoaEntity> pessoaEntityOptional = this.pessoaRepository.findByCodePublic(pessoaRequestTranfer.getCodePublic());
+        if (pessoaEntityOptional.isEmpty()) {
             throw new EntityNotFoundException("Pessoa não Encontrada!");
         }
-        pessoaEntity.setNome(pessoaRequestTranfer.getNome());
-        return PessoaMapper.fromPessoaResponseTransfer(this.pessoaRepository.save(pessoaEntity));
+        pessoaEntityOptional.get().setNome(pessoaRequestTranfer.getNome());
+        return PessoaMapper.fromPessoaResponseTransfer(this.pessoaRepository.save(pessoaEntityOptional.get()));
     }
 
     public RestResponseTransfer inativarPessoa(String codePublic) {
-        PessoaEntity pessoaEntity = this.pessoaRepository.findByCodePublic(codePublic);
-        if (pessoaEntity == null) {
+    	Optional<PessoaEntity> pessoaEntityOptional = this.pessoaRepository.findByCodePublic(codePublic);
+        if (pessoaEntityOptional == null) {
             new EntityNotFoundException("Pessoa não Encontrada!");
         }
-        pessoaEntity.setActive(false);
+        pessoaEntityOptional.get().setActive(false);
         RestResponseTransfer restResponseTransfer = new RestResponseTransfer<PessoaResponseTransfer>();
             restResponseTransfer.setTipoOperacaoEnumeration(TipoOperacaoEnumeration.INATIVAR);
             restResponseTransfer.setMensagem("Pessoa Inativada com Sucesso!");
-            restResponseTransfer.setObject(PessoaMapper.fromPessoaResponseTransfer(pessoaEntity));
-        this.pessoaRepository.save(pessoaEntity);
+            restResponseTransfer.setObject(PessoaMapper.fromPessoaResponseTransfer(pessoaEntityOptional.get()));
+        this.pessoaRepository.save(pessoaEntityOptional.get());
         return restResponseTransfer;
     }
 

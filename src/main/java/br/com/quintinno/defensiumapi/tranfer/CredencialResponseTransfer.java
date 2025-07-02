@@ -22,7 +22,11 @@ public class CredencialResponseTransfer {
 
     public CredencialResponseTransfer() { }
 
-    public String getCodePublic() {
+    public CredencialResponseTransfer(String senha) {
+		this.senha = senha;
+	}
+
+	public String getCodePublic() {
         return codePublic;
     }
 
