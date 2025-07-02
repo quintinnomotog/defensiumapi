@@ -22,7 +22,6 @@ public class CredencialRequestTransfer {
     @NotBlank(message = "Necessário informar campo obrigatório!")
     private String senha;
 
-    @NotBlank(message = "Necessário informar campo obrigatório!")
     private String descricao;
 
     private String link;

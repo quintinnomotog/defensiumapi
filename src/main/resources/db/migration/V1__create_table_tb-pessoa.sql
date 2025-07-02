@@ -11,5 +11,6 @@ create table if not exists tb_pessoa (
 	data_criacao datetime default current_timestamp not null comment 'Representa a Data de Criação do Registro',
 	data_edicao datetime default current_timestamp null comment 'Representa a Data de Deleção do Registro',
 	data_delecao datetime null comment 'Representa a Data de Edição do Registro',
-	constraint pk_pessoa primary key (code)
+	constraint pk_pessoa primary key (code),
+	constraint un_pessoa unique (nome)
 ) comment 'Representa uma pessoa do sistema';

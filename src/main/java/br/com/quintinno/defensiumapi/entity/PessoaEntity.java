@@ -39,7 +39,11 @@ public class PessoaEntity {
 
     public PessoaEntity() { }
 
-    public PessoaEntity(String nome) {
+    public PessoaEntity(Long code) {
+		this.code = code;
+	}
+
+	public PessoaEntity(String nome) {
         this.nome = nome;
     }
 

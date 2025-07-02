@@ -6,7 +6,7 @@
 create table if not exists tb_credencial (
 	code bigint not null auto_increment comment 'Identificador privado e único da tabela',
 	code_public varchar(255) not null comment 'Identificador público e único da tabela',
-	descricao varchar(255) not null comment 'Representa a descrição da uma determinada categoria de uma credencial',
+	descricao varchar(255) null comment 'Representa a descrição da uma determinada categoria de uma credencial',
 	id_categoria_credencial bigint not null comment 'Representa o relacionamento com a Categoria da Credencial',
 	id_pessoa bigint not null comment 'Representa o relacionamento com a Pessoa do sistema',
 	identificador varchar(100) not null comment 'Representa o identificador (cpf, cnpj, telefone ou email) da Credencial',

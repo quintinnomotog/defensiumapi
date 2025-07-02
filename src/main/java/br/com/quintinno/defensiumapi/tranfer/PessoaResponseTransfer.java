@@ -1,6 +1,8 @@
 package br.com.quintinno.defensiumapi.tranfer;
 
 public class PessoaResponseTransfer {
+	
+	private Long code;
 
     private String codePublic;
 
@@ -16,14 +18,23 @@ public class PessoaResponseTransfer {
         this.nome = nome;
     }
 
-    public PessoaResponseTransfer(String codePublic, String nome, String dataCriacao, String active) {
+    public PessoaResponseTransfer(Long code, String codePublic, String nome, String dataCriacao, String active) {
+    	this.code = code;
         this.codePublic = codePublic;
         this.nome = nome;
         this.dataCriacao = dataCriacao;
         this.active = active;
     }
 
-    public String getCodePublic() {
+    public Long getCode() {
+		return code;
+	}
+
+	public void setCode(Long code) {
+		this.code = code;
+	}
+
+	public String getCodePublic() {
         return codePublic;
     }
 

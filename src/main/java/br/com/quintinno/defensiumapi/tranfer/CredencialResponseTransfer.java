@@ -17,10 +17,16 @@ public class CredencialResponseTransfer {
     private String active;
 
     private String dataOperacao;
+    
+    private String nomePessoa;
 
     public CredencialResponseTransfer() { }
 
-    public String getCodePublic() {
+    public CredencialResponseTransfer(String senha) {
+		this.senha = senha;
+	}
+
+	public String getCodePublic() {
         return codePublic;
     }
 
@@ -83,5 +89,13 @@ public class CredencialResponseTransfer {
     public void setDataOperacao(String dataOperacao) {
         this.dataOperacao = dataOperacao;
     }
+
+	public String getNomePessoa() {
+		return nomePessoa;
+	}
+
+	public void setNomePessoa(String nomePessoa) {
+		this.nomePessoa = nomePessoa;
+	}
 
 }

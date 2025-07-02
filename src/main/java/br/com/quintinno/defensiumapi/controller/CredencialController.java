@@ -33,10 +33,8 @@ public class CredencialController {
     }
 
     @PostMapping
-    public ResponseEntity<CredencialResponseTransfer> create(
-            @RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(this.credencialService.create(credencialRequestTransfer));
+    public ResponseEntity<CredencialResponseTransfer> create(@RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.credencialService.create(credencialRequestTransfer));
     }
 
     @GetMapping
@@ -63,6 +61,13 @@ public class CredencialController {
         restResponseTransfer.setObjectList(credencialResponseTransferList);
         restResponseTransfer.setTipoOperacaoEnumeration(TipoOperacaoEnumeration.FINDALL);
         return restResponseTransfer;
+    }
+    
+    @PostMapping("/descriptografar")
+    public ResponseEntity<CredencialResponseTransfer> descriptografarSenha(@RequestBody String codePublicCredencial) {
+    	CredencialRequestTransfer credencialRequestTransfer = new CredencialRequestTransfer();
+    		credencialRequestTransfer.setCodePublicCredencial(codePublicCredencial);
+        return ResponseEntity.status(HttpStatus.OK).body(new CredencialResponseTransfer(this.credencialService.recuperarSenhaDescriptografada(credencialRequestTransfer)));
     }
 
 }
