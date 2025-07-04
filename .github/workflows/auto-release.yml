@@ -1,5 +1,4 @@
-# .github/workflows/auto-release.yml
-name: Gerar nova versão (tag)
+name: Lançamento de Nova Versão
 
 on:
   push:
@@ -11,7 +10,7 @@ permissions:
 
 jobs:
   release:
-    name: Criar nova tag de versão
+    name: Criar TAG de Lançamento
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +28,7 @@ jobs:
           TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0.0")
           echo "TAG=$TAG" >> $GITHUB_ENV
 
-      - name: Calcular nova tag (com 4 partes)
+      - name: Renomear TAG
         id: bump
         run: |
           OLD_TAG=${{ env.TAG }}
@@ -39,12 +38,12 @@ jobs:
           NEW_TAG="v$MAJOR.$MINOR.$PATCH.$BUILD"
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
-      - name: Criar e enviar nova tag
+      - name: Enviar TAG
         run: |
           git tag ${{ env.NEW_TAG }}
           git push origin ${{ env.NEW_TAG }}
 
-      - name: Criar release no GitHub
+      - name: Gerar Nova Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.NEW_TAG }}
