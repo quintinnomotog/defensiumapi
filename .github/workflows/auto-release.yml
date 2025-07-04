@@ -40,8 +40,8 @@ jobs:
 
       - name: Enviar TAG
         run: |
-          if git rev-parse ${{ env.NEW_TAG }} >/dev/null 2>&1; then
-            echo "A tag ${{ env.NEW_TAG }} já existe. Ignorando push."
+          if git ls-remote --tags origin | grep -q "refs/tags/${{ env.NEW_TAG }}$"; then
+            echo "A tag ${{ env.NEW_TAG }} já existe no repositório remoto. Ignorando push."
           else
             git tag ${{ env.NEW_TAG }}
             git push origin ${{ env.NEW_TAG }}
