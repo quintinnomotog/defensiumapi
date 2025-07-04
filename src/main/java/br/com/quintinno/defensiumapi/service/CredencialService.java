@@ -1,12 +1,13 @@
 package br.com.quintinno.defensiumapi.service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.quintinno.defensiumapi.client.CredenciumClient;
@@ -23,10 +24,10 @@ import br.com.quintinno.defensiumapi.tranfer.CredencialResponseTransfer;
 public class CredencialService {
 
     private static final Logger logger = LoggerFactory.getLogger(CredencialService.class);
-
+    
     @Autowired
     private CredencialRepository credencialRepository;
-    
+
     @Autowired
     private CredenciumClient credenciumClient;
 
@@ -66,14 +67,15 @@ public class CredencialService {
                 credencialRequestTransfer.getIdentificador());
     }
 
-    public List<CredencialResponseTransfer> findAll() {
-        List<CredencialEntity> credencialEntityList = this.credencialRepository.findAll();
-        return CredencialMapper.toCredencialResponseTransfer(credencialEntityList);
+    public Page<CredencialResponseTransfer> findAll(Pageable pageable) {
+        Page<CredencialEntity> credencialEntityPageList = this.credencialRepository.findAll(pageable);
+        return CredencialMapper.toCredencialResponseTransferPage(credencialEntityPageList);
     }
 
     public CredencialResponseTransfer update(CredencialRequestTransfer credencialRequestTransfer) {
-        Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository.findByCodePublic(credencialRequestTransfer.getCodePublicCredencial());
-        if (!credencialEntityOptional.isPresent()) {
+		Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository
+				.findByCodePublic(credencialRequestTransfer.getCodePublicCredencial());
+		 if (!credencialEntityOptional.isPresent()) {
             throw new NegocioException("Credencial não encontrada!");
         }
         CredencialEntity credencialEntity = CredencialMapper.toCredencialEntity(credencialRequestTransfer, credencialEntityOptional.get());

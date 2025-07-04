@@ -1,6 +1,10 @@
 package br.com.quintinno.defensiumapi.mapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import br.com.quintinno.defensiumapi.entity.CredencialEntity;
 import br.com.quintinno.defensiumapi.tranfer.CredencialRequestTransfer;
@@ -41,6 +45,12 @@ public class CredencialMapper {
             credencialResponseTransfer.setNomePessoa(credencialEntity.getPessoaEntity().getNome());
         return credencialResponseTransfer;
     }
+    
+	public static Page<CredencialResponseTransfer> toCredencialResponseTransferPage(Page<CredencialEntity> entityPage) {
+		List<CredencialResponseTransfer> transferList = entityPage.getContent().stream()
+				.map(CredencialMapper::toCredencialResponseTransfer).collect(Collectors.toList());
+		return new PageImpl<>(transferList, entityPage.getPageable(), entityPage.getTotalElements());
+	}
 
     public static List<CredencialResponseTransfer> toCredencialResponseTransfer(List<CredencialEntity> credencialEntityList) {
         return credencialEntityList

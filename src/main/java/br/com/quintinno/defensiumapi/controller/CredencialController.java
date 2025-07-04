@@ -2,6 +2,9 @@ package br.com.quintinno.defensiumapi.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,11 +29,8 @@ import jakarta.validation.Valid;
 @CrossOrigin(origins = "*")
 public class CredencialController {
 
-    private final CredencialService credencialService;
-
-    public CredencialController(CredencialService credencialService) {
-        this.credencialService = credencialService;
-    }
+	@Autowired
+    private CredencialService credencialService;
 
     @PostMapping
     public ResponseEntity<CredencialResponseTransfer> create(@RequestBody @Valid CredencialRequestTransfer credencialRequestTransfer) {
@@ -38,11 +38,9 @@ public class CredencialController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponseTransfer<CredencialResponseTransfer>> findAll() {
-        List<CredencialResponseTransfer> credencialResponseTransferList = this.credencialService.findAll();
-        RestResponseTransfer<CredencialResponseTransfer> restResponseTransfer = getFindAllRestResponseTransfer(
-                credencialResponseTransferList);
-        return ResponseEntity.status(HttpStatus.OK).body(restResponseTransfer);
+    public ResponseEntity<Page<CredencialResponseTransfer>> findAll(Pageable pageable) {
+        Page<CredencialResponseTransfer> credencialResponseTransferPageList = this.credencialService.findAll(pageable);
+        return ResponseEntity.ok(credencialResponseTransferPageList);
     }
 
     @PutMapping("/{codePublic}")
