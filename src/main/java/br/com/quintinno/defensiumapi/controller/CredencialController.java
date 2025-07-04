@@ -37,7 +37,7 @@ public class CredencialController {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.credencialService.create(credencialRequestTransfer));
     }
 
-    @GetMapping
+    @GetMapping({"", "/"})
     public ResponseEntity<Page<CredencialResponseTransfer>> findAll(Pageable pageable) {
         Page<CredencialResponseTransfer> credencialResponseTransferPageList = this.credencialService.findAll(pageable);
         return ResponseEntity.ok(credencialResponseTransferPageList);

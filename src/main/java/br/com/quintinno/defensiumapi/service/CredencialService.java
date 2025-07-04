@@ -38,6 +38,12 @@ public class CredencialService {
     // HttpRequestMethodNotSupportedException;
     // InvalidDataAccessApiUsageException;
     public CredencialResponseTransfer create(CredencialRequestTransfer credencialRequestTransfer) {
+    	
+    	Optional<PessoaEntity> pessoaEntityDatabase = this.pessoaRepository.findByNome(credencialRequestTransfer.getPessoaEntity().getNome());
+    	
+    	if (!pessoaEntityDatabase.isEmpty()) {
+    		credencialRequestTransfer.setPessoaEntity(pessoaEntityDatabase.get());
+    	}
         
     	if (isCadastrarPessoa(credencialRequestTransfer)) {
     		PessoaEntity pessoaEntity = credencialRequestTransfer.getPessoaEntity();
