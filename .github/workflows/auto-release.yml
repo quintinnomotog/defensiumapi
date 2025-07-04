@@ -40,8 +40,12 @@ jobs:
 
       - name: Enviar TAG
         run: |
-          git tag ${{ env.NEW_TAG }}
-          git push origin ${{ env.NEW_TAG }}
+          if git rev-parse ${{ env.NEW_TAG }} >/dev/null 2>&1; then
+            echo "A tag ${{ env.NEW_TAG }} já existe. Ignorando push."
+          else
+            git tag ${{ env.NEW_TAG }}
+            git push origin ${{ env.NEW_TAG }}
+          fi
 
       - name: Gerar Nova Release
         uses: softprops/action-gh-release@v2
