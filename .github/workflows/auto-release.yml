@@ -1,0 +1,49 @@
+# .github/workflows/auto-release.yml
+name: Gerar nova versão (tag)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Criar nova tag de versão
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Git
+        run: |
+          git config user.name "José Quintinno"
+          git config user.email "josequintino@hotmail.com.br"
+
+      - name: Obter última tag
+        id: get_tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0.0")
+          echo "TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Calcular nova tag (com 4 partes)
+        id: bump
+        run: |
+          OLD_TAG=${{ env.TAG }}
+          OLD_TAG=${OLD_TAG#v}
+          IFS='.' read -r MAJOR MINOR PATCH BUILD <<< "$OLD_TAG"
+          BUILD=$((BUILD + 1))
+          NEW_TAG="v$MAJOR.$MINOR.$PATCH.$BUILD"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+
+      - name: Criar e enviar nova tag
+        run: |
+          git tag ${{ env.NEW_TAG }}
+          git push origin ${{ env.NEW_TAG }}
+
+      - name: Criar release no GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.NEW_TAG }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
