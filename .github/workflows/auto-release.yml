@@ -38,6 +38,17 @@ jobs:
           NEW_TAG="v$MAJOR.$MINOR.$PATCH.$BUILD"
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
+      - name: Atualizar versão no pom.xml
+        run: |
+          mvn versions:set -DnewVersion=${{ env.NEW_TAG }}
+          mvn versions:commit
+
+      - name: Commitar alteração da versão
+        run: |
+          git add pom.xml
+          git commit -m "chore: atualiza versão do projeto para ${{ env.NEW_TAG }}"
+          git push
+
       - name: Enviar TAG
         run: |
           if git ls-remote --tags origin | grep -q "refs/tags/${{ env.NEW_TAG }}$"; then
