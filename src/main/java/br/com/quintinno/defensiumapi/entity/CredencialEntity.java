@@ -58,6 +58,33 @@ public class CredencialEntity {
 
     @Column(name = "DATA_DELECAO", updatable = false)
     private LocalDateTime dataDelecao;
+    
+    @Column(name = "DATABASE_HOSTNAME")
+    private String databaseHostname;
+    
+    @Column(name = "DATABASE_PORTA")
+    private String databasePorta;
+    
+    @Column(name = "DATABASE_NOME")
+    private String databaseNome;
+    
+    @Column(name = "DATABASE_USUARIO")
+    private String databaseUsuario;
+    
+    @Column(name = "cartao_bancario_nome_titular", length = 100)
+    private String cartaoBancarioNomeTitular;
+    
+    @Column(name = "cartao_bancario_numero_cartao", length = 16)
+    private String cartaoBancarioNumeroCartao;
+    
+    @Column(name = "cartao_bancario_mes_vencimento", length = 2)
+    private String cartaoBancarioMesVencimento;
+    
+    @Column(name = "cartao_bancario_ano_vencimento", length = 4)
+    private String cartaoBancarioAnoVencimento;
+    
+    @Column(name = "cartao_bancario_cvv", length = 3)
+    private String cartaoBancarioCvv;
 
     public CredencialEntity() {
         this.codePublic = UUID.randomUUID().toString();
@@ -169,5 +196,77 @@ public class CredencialEntity {
     public void setDataDelecao(LocalDateTime dataDelecao) {
         this.dataDelecao = dataDelecao;
     }
+
+	public String getDatabaseHostname() {
+		return databaseHostname;
+	}
+
+	public void setDatabaseHostname(String databaseHostname) {
+		this.databaseHostname = databaseHostname;
+	}
+
+	public String getDatabasePorta() {
+		return databasePorta;
+	}
+
+	public void setDatabasePorta(String databasePorta) {
+		this.databasePorta = databasePorta;
+	}
+
+	public String getDatabaseNome() {
+		return databaseNome;
+	}
+
+	public void setDatabaseNome(String databaseNome) {
+		this.databaseNome = databaseNome;
+	}
+
+	public String getDatabaseUsuario() {
+		return databaseUsuario;
+	}
+
+	public void setDatabaseUsuario(String databaseUsuario) {
+		this.databaseUsuario = databaseUsuario;
+	}
+
+	public String getCartaoBancarioNomeTitular() {
+		return cartaoBancarioNomeTitular;
+	}
+
+	public void setCartaoBancarioNomeTitular(String cartaoBancarioNomeTitular) {
+		this.cartaoBancarioNomeTitular = cartaoBancarioNomeTitular;
+	}
+
+	public String getCartaoBancarioNumeroCartao() {
+		return cartaoBancarioNumeroCartao;
+	}
+
+	public void setCartaoBancarioNumeroCartao(String cartaoBancarioNumeroCartao) {
+		this.cartaoBancarioNumeroCartao = cartaoBancarioNumeroCartao;
+	}
+
+	public String getCartaoBancarioMesVencimento() {
+		return cartaoBancarioMesVencimento;
+	}
+
+	public void setCartaoBancarioMesVencimento(String cartaoBancarioMesVencimento) {
+		this.cartaoBancarioMesVencimento = cartaoBancarioMesVencimento;
+	}
+
+	public String getCartaoBancarioAnoVencimento() {
+		return cartaoBancarioAnoVencimento;
+	}
+
+	public void setCartaoBancarioAnoVencimento(String cartaoBancarioAnoVencimento) {
+		this.cartaoBancarioAnoVencimento = cartaoBancarioAnoVencimento;
+	}
+
+	public String getCartaoBancarioCvv() {
+		return cartaoBancarioCvv;
+	}
+
+	public void setCartaoBancarioCvv(String cartaoBancarioCvv) {
+		this.cartaoBancarioCvv = cartaoBancarioCvv;
+	}
 
 }

@@ -16,7 +16,7 @@ public class CredencialRequestTransfer {
     @NotNull(message = "Necessário informar campo obrigatório!")
     private PessoaEntity pessoaEntity;
 
-    @NotBlank(message = "Necessário informar campo obrigatório!")
+//    @NotBlank(message = "Necessário informar campo obrigatório!")
     private String identificador;
 
     @NotBlank(message = "Necessário informar campo obrigatório!")
@@ -29,6 +29,24 @@ public class CredencialRequestTransfer {
     private String observacao;
 
     private String codePublicCredencial;
+    
+    private String databaseHostname;
+    
+    private String databasePorta;
+    
+    private String databaseNome;
+    
+    private String databaseUsuario;
+    
+    private String cartaoBancarioNomeTitular;
+    
+    private String cartaoBancarioNumeroCartao;
+    
+    private String cartaoBancarioMesVencimento;
+    
+    private String cartaoBancarioAnoVencimento;
+    
+    private String cartaoBancarioCvv;
     
     public CategoriaCredencialEntity getCategoriaCredencialEntity() {
         return categoriaCredencialEntity;
@@ -93,4 +111,77 @@ public class CredencialRequestTransfer {
     public void setCodePublicCredencial(String codePublicCredencial) {
         this.codePublicCredencial = codePublicCredencial;
     }
+
+	public String getDatabaseHostname() {
+		return databaseHostname;
+	}
+
+	public void setDatabaseHostname(String databaseHostname) {
+		this.databaseHostname = databaseHostname;
+	}
+
+	public String getDatabasePorta() {
+		return databasePorta;
+	}
+
+	public void setDatabasePorta(String databasePorta) {
+		this.databasePorta = databasePorta;
+	}
+
+	public String getDatabaseNome() {
+		return databaseNome;
+	}
+
+	public void setDatabaseNome(String databaseNome) {
+		this.databaseNome = databaseNome;
+	}
+
+	public String getDatabaseUsuario() {
+		return databaseUsuario;
+	}
+
+	public void setDatabaseUsuario(String databaseUsuario) {
+		this.databaseUsuario = databaseUsuario;
+	}
+
+	public String getCartaoBancarioNomeTitular() {
+		return cartaoBancarioNomeTitular;
+	}
+
+	public void setCartaoBancarioNomeTitular(String cartaoBancarioNomeTitular) {
+		this.cartaoBancarioNomeTitular = cartaoBancarioNomeTitular;
+	}
+
+	public String getCartaoBancarioNumeroCartao() {
+		return cartaoBancarioNumeroCartao;
+	}
+
+	public void setCartaoBancarioNumeroCartao(String cartaoBancarioNumeroCartao) {
+		this.cartaoBancarioNumeroCartao = cartaoBancarioNumeroCartao;
+	}
+
+	public String getCartaoBancarioMesVencimento() {
+		return cartaoBancarioMesVencimento;
+	}
+
+	public void setCartaoBancarioMesVencimento(String cartaoBancarioMesVencimento) {
+		this.cartaoBancarioMesVencimento = cartaoBancarioMesVencimento;
+	}
+
+	public String getCartaoBancarioAnoVencimento() {
+		return cartaoBancarioAnoVencimento;
+	}
+
+	public void setCartaoBancarioAnoVencimento(String cartaoBancarioAnoVencimento) {
+		this.cartaoBancarioAnoVencimento = cartaoBancarioAnoVencimento;
+	}
+
+	public String getCartaoBancarioCvv() {
+		return cartaoBancarioCvv;
+	}
+
+	public void setCartaoBancarioCvv(String cartaoBancarioCvv) {
+		this.cartaoBancarioCvv = cartaoBancarioCvv;
+	}
+	
 }

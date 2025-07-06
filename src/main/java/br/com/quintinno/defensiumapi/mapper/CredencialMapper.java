@@ -29,6 +29,15 @@ public class CredencialMapper {
             credencialEntity.setObservacao(credencialRequestTransfer.getObservacao());
             credencialEntity.setPessoaEntity(credencialRequestTransfer.getPessoaEntity());
             credencialEntity.setSenha(credencialRequestTransfer.getSenha());
+            credencialEntity.setDatabaseHostname(credencialRequestTransfer.getDatabaseHostname());
+            credencialEntity.setDatabasePorta(credencialRequestTransfer.getDatabasePorta());
+            credencialEntity.setDatabaseNome(credencialRequestTransfer.getDatabaseNome());
+            credencialEntity.setDatabaseUsuario(credencialRequestTransfer.getDatabaseUsuario());
+            credencialEntity.setCartaoBancarioNomeTitular(credencialRequestTransfer.getCartaoBancarioNomeTitular());
+            credencialEntity.setCartaoBancarioNumeroCartao(credencialRequestTransfer.getCartaoBancarioNumeroCartao());
+            credencialEntity.setCartaoBancarioMesVencimento(credencialRequestTransfer.getCartaoBancarioMesVencimento());
+            credencialEntity.setCartaoBancarioAnoVencimento(credencialRequestTransfer.getCartaoBancarioAnoVencimento());
+            credencialEntity.setCartaoBancarioCvv(credencialRequestTransfer.getCartaoBancarioCvv());
         return credencialEntity;
     }
 
@@ -43,6 +52,15 @@ public class CredencialMapper {
             credencialResponseTransfer.setObservacao(credencialEntity.getObservacao());
             credencialResponseTransfer.setDataOperacao(DateUtility.getDataHoraFormatada(credencialEntity.getDataCriacao(), DateUtility.DATA_FORMATO_DDMMAAAAHHMMSS));
             credencialResponseTransfer.setNomePessoa(credencialEntity.getPessoaEntity().getNome());
+            credencialResponseTransfer.setDatabaseHostname(credencialEntity.getDatabaseHostname());
+            credencialResponseTransfer.setDatabasePorta(credencialEntity.getDatabasePorta());
+            credencialResponseTransfer.setDatabaseNome(credencialEntity.getDatabaseNome());
+            credencialResponseTransfer.setDatabaseUsuario(credencialEntity.getDatabaseUsuario());
+            credencialResponseTransfer.setCartaoBancarioNomeTitular(credencialEntity.getCartaoBancarioNomeTitular());
+            credencialResponseTransfer.setCartaoBancarioNumeroCartao(credencialEntity.getCartaoBancarioNumeroCartao());
+            credencialResponseTransfer.setCartaoBancarioMesVencimento(credencialEntity.getCartaoBancarioMesVencimento());
+            credencialResponseTransfer.setCartaoBancarioAnoVencimento(credencialEntity.getCartaoBancarioAnoVencimento());
+            credencialResponseTransfer.setCartaoBancarioCvv(credencialEntity.getCartaoBancarioCvv());
         return credencialResponseTransfer;
     }
     
