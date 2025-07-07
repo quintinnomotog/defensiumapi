@@ -32,8 +32,8 @@ public class Application implements CommandLineRunner {
 
 	@GetMapping({"", "/", "/defensium"})
 	public String getMensagem() {
-		return String.format("[ Application: %s | Port: %s | Version: %s | Build: %s ]", "DEFENSIUMAPI", "8080", 
-				versao, data);
+		return String.format("[ Application: %s | Port: %s | Version: %s | Build: %s ]", 
+				"DEFENSIUMAPI", "8080", versao, data);
 	}
 
 	@Override

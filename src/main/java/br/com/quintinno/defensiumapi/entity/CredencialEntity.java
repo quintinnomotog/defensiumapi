@@ -93,7 +93,11 @@ public class CredencialEntity {
         this.active = true;
     }
 
-    public Long getCode() {
+    public CredencialEntity(String codePublic) {
+		this.codePublic = codePublic;
+	}
+
+	public Long getCode() {
         return code;
     }
 
