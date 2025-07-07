@@ -23,6 +23,8 @@ public class Application implements CommandLineRunner {
 
 	@Value("${spring.application.version}")
 	private String versao;
+	
+	private String data = DateUtility.getDataHoraFormatada();
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -31,7 +33,7 @@ public class Application implements CommandLineRunner {
 	@GetMapping({"", "/", "/defensium"})
 	public String getMensagem() {
 		return String.format("[ Application: %s | Port: %s | Version: %s | Build: %s ]", "DEFENSIUMAPI", "8080", 
-				versao, DateUtility.getDataHoraFormatada());
+				versao, data);
 	}
 
 	@Override
