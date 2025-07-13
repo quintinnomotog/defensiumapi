@@ -67,5 +67,10 @@ public class CredencialController {
     		credencialRequestTransfer.setCodePublicCredencial(codePublicCredencial);
         return ResponseEntity.status(HttpStatus.OK).body(new CredencialResponseTransfer(this.credencialService.recuperarSenhaDescriptografada(credencialRequestTransfer)));
     }
+    
+    @GetMapping("/{codePublic}")
+    public ResponseEntity<CredencialResponseTransfer> findOne(@PathVariable("codePublic") String codePublic) {
+    	return ResponseEntity.ok(this.credencialService.findOne(codePublic));
+    }
 
 }

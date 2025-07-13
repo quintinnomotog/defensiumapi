@@ -105,5 +105,13 @@ public class CredencialService {
     	logger.info("Descriptografando senha via Credencium-Service");
     	return credenciumClient.descriptografarChaveSeguranca(credencialEntityOptional.get().getSenha());
     }
+    
+    public CredencialResponseTransfer findOne(String codePublic) {
+    	Optional<CredencialEntity> credencialEntityOptional = this.credencialRepository.findByCodePublic(codePublic);
+    	if (credencialEntityOptional.isEmpty()) {
+    		throw new NegocioException("Credencial Inexistente na Base de Dados!");
+    	}
+    	return CredencialMapper.toCredencialResponseTransfer(credencialEntityOptional.get());
+    }
 
 }

@@ -5,7 +5,7 @@
  */
 insert into tb_pessoa (code_public, nome, data_criacao, data_edicao, active) values (
 	'd93d1943-cb92-4dcb-b70c-7e4bb3978c8f',
-	'Google',
+	'Usuário do Sistema',
 	now(),
 	now(),
 	true

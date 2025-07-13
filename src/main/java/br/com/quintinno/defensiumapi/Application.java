@@ -1,7 +1,5 @@
 package br.com.quintinno.defensiumapi;
 
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,18 +23,17 @@ public class Application implements CommandLineRunner {
 
 	@Value("${spring.application.version}")
 	private String versao;
+	
+	private String data = DateUtility.getDataHoraFormatada();
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@GetMapping
-	public Map<String, String> getMensagem() {
-		return Map.of(
-				"APPLICATION", "DEFENSIUMAPI",
-				"PORT", "8080",
-				"VERSION", versao,
-				"DATE", DateUtility.getDataHoraFormatada());
+	@GetMapping({"", "/", "/defensium"})
+	public String getMensagem() {
+		return String.format("[ Application: %s | Port: %s | Version: %s | Build: %s ]", 
+				"DEFENSIUMAPI", "8080", versao, data);
 	}
 
 	@Override
