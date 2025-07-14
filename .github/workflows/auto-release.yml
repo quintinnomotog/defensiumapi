@@ -52,7 +52,7 @@ jobs:
             echo "BUMP=bugfix" >> $GITHUB_ENV  # padrão seguro
           fi
 
-      - name: Criar nova tag
+      - name: Calcular nova tag
         id: bump
         run: |
           OLD_TAG=${{ env.TAG }}
@@ -80,14 +80,20 @@ jobs:
 
       - name: Atualizar versão no pom.xml
         run: |
-          mvn versions:set -DnewVersion=${{ env.NEW_TAG }}
+          NEW_VERSION=${{ env.NEW_TAG }}
+          NEW_VERSION=${NEW_VERSION#v}
+          mvn versions:set -DnewVersion=$NEW_VERSION
           mvn versions:commit
 
-      - name: Commitar alteração da versão
+      - name: Commitar alteração da versão se houver mudanças
         run: |
           git add pom.xml
-          git commit -m "release: Lançamento da Versão ${{ env.NEW_TAG }}"
-          git push
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteração para commitar."
+          else
+            git commit -m "release: Lançamento da Versão ${{ env.NEW_TAG }}"
+            git push
+          fi
 
       - name: Enviar TAG
         run: |
@@ -98,7 +104,7 @@ jobs:
             git push origin ${{ env.NEW_TAG }}
           fi
 
-      - name: Gerar Nova Release
+      - name: Criar Release no GitHub
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.NEW_TAG }}
