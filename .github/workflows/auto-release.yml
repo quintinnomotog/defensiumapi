@@ -1,4 +1,4 @@
-name: Lançamento de Nova Versão Automático
+name: Lançamento de Nova Versão
 
 on:
   push:
@@ -28,62 +28,23 @@ jobs:
           TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0.0")
           echo "TAG=$TAG" >> $GITHUB_ENV
 
-      - name: Obter última mensagem de commit
-        id: get_commit_msg
-        run: |
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          echo "COMMIT_MSG<<EOF" >> $GITHUB_ENV
-          echo "$COMMIT_MSG" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
-      - name: Detectar tipo de bump
-        id: detect_bump
-        run: |
-          COMMIT_MSG="${{ env.COMMIT_MSG }}"
-          echo "Mensagem do commit: $COMMIT_MSG"
-          
-          if [[ "$COMMIT_MSG" == *"[feature]"* ]]; then
-            echo "BUMP=feature" >> $GITHUB_ENV
-          elif [[ "$COMMIT_MSG" == *"[hotfix]"* ]]; then
-            echo "BUMP=hotfix" >> $GITHUB_ENV
-          elif [[ "$COMMIT_MSG" == *"[bugfix]"* ]]; then
-            echo "BUMP=bugfix" >> $GITHUB_ENV
-          else
-            echo "BUMP=bugfix" >> $GITHUB_ENV  # padrão seguro
-          fi
-
-      - name: Calcular nova tag
+      - name: Renomear TAG
         id: bump
         run: |
           OLD_TAG=${{ env.TAG }}
           OLD_TAG=${OLD_TAG#v}
-          IFS='.' read -r _ FEAT HOT BUG <<< "$OLD_TAG"
-
-          case "${{ env.BUMP }}" in
-            feature)
-              FEAT=$((FEAT + 1))
-              HOT=0
-              BUG=0
-              ;;
-            hotfix)
-              HOT=$((HOT + 1))
-              BUG=0
-              ;;
-            bugfix)
-              BUG=$((BUG + 1))
-              ;;
-          esac
-
-          NEW_TAG="v1.$FEAT.$HOT.$BUG"
-          echo "Nova tag: $NEW_TAG"
+          IFS='.' read -r FEATURE HOTFIX BUGFIX BUG <<< "$OLD_TAG"
+          BUG=$((BUG + 1))
+          NEW_TAG="v1.$FEATURE.$HOTFIX.$BUG"
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
-      - name: Atualizar versão no pom.xml
+      - name: Atualizar versão no pom.xml via sed
         run: |
           NEW_VERSION=${{ env.NEW_TAG }}
           NEW_VERSION=${NEW_VERSION#v}
-          mvn versions:set -DnewVersion=$NEW_VERSION
-          mvn versions:commit
+          sed -i "s#<version>.*</version>#<version>$NEW_VERSION</version>#" pom.xml
+          git status
+          cat pom.xml
 
       - name: Commitar alteração da versão se houver mudanças
         run: |
@@ -98,13 +59,13 @@ jobs:
       - name: Enviar TAG
         run: |
           if git ls-remote --tags origin | grep -q "refs/tags/${{ env.NEW_TAG }}$"; then
-            echo "Tag ${{ env.NEW_TAG }} já existe, ignorando push."
+            echo "A tag ${{ env.NEW_TAG }} já existe no repositório remoto. Ignorando push."
           else
             git tag ${{ env.NEW_TAG }}
             git push origin ${{ env.NEW_TAG }}
           fi
 
-      - name: Criar Release no GitHub
+      - name: Gerar Nova Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.NEW_TAG }}
