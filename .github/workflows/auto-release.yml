@@ -25,7 +25,7 @@ jobs:
       - name: Obter última tag
         id: get_tag
         run: |
-          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "vX.Y.Z")
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.6.0.0")
           echo "TAG=$TAG" >> $GITHUB_ENV
 
       - name: Renomear TAG
@@ -46,7 +46,7 @@ jobs:
       - name: Commitar alteração da versão
         run: |
           git add pom.xml
-          git commit -m "chore: atualiza versão do projeto para ${{ env.NEW_TAG }}"
+          git commit -m "release: Lançamento da Versão ${{ env.NEW_TAG }}"
           git push
 
       - name: Enviar TAG
