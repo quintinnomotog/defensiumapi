@@ -52,7 +52,7 @@ jobs:
             echo "BUMP=bugfix" >> $GITHUB_ENV  # padrão seguro
           fi
 
-      - name: Calcular nova tag
+      - name: Criar nova tag
         id: bump
         run: |
           OLD_TAG=${{ env.TAG }}
