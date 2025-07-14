@@ -13,7 +13,7 @@
 
 	<groupId>br.com.quintinno</groupId>
 	<artifactId>defensiumapi</artifactId>
-	<version>v1.0.0.1</version>
+	<version>vX.Y.Z.1</version>
 	<name>defensiumapi</name>
 	<description>Sistema Gerenciador de Senhas Pessoais</description>
 
