@@ -38,11 +38,14 @@ jobs:
           NEW_TAG="v1.$FEATURE.$HOTFIX.$BUG"
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
-      - name: Atualizar versão no pom.xml via sed
+      - name: Instalar xmlstarlet
+        run: sudo apt-get update && sudo apt-get install -y xmlstarlet
+
+      - name: Atualizar versão no pom.xml com xmlstarlet
         run: |
           NEW_VERSION=${{ env.NEW_TAG }}
           NEW_VERSION=${NEW_VERSION#v}
-          sed -i "s#<version>.*</version>#<version>$NEW_VERSION</version>#" pom.xml
+          xmlstarlet ed -L -u "/project/version" -v "$NEW_VERSION" pom.xml
           git status
           cat pom.xml
 
