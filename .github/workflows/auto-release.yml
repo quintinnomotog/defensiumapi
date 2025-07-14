@@ -19,8 +19,8 @@ jobs:
 
       - name: Configurar Git
         run: |
-          git config user.name "José Quintinno"
-          git config user.email "josequintino@hotmail.com.br"
+          git config user.name "Quintinno Digital"
+          git config user.email "quintinno.com.br"
 
       - name: Obter última tag
         id: get_tag
