@@ -1,4 +1,4 @@
-name: Lançamento de Nova Versão
+name: Lançamento de Nova Versão Automático
 
 on:
   push:
@@ -25,17 +25,57 @@ jobs:
       - name: Obter última tag
         id: get_tag
         run: |
-          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.7.0.0")
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0.0")
           echo "TAG=$TAG" >> $GITHUB_ENV
 
-      - name: Renomear TAG
+      - name: Obter última mensagem de commit
+        id: get_commit_msg
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "COMMIT_MSG<<EOF" >> $GITHUB_ENV
+          echo "$COMMIT_MSG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Detectar tipo de bump
+        id: detect_bump
+        run: |
+          COMMIT_MSG="${{ env.COMMIT_MSG }}"
+          echo "Mensagem do commit: $COMMIT_MSG"
+          
+          if [[ "$COMMIT_MSG" == *"[feature]"* ]]; then
+            echo "BUMP=feature" >> $GITHUB_ENV
+          elif [[ "$COMMIT_MSG" == *"[hotfix]"* ]]; then
+            echo "BUMP=hotfix" >> $GITHUB_ENV
+          elif [[ "$COMMIT_MSG" == *"[bugfix]"* ]]; then
+            echo "BUMP=bugfix" >> $GITHUB_ENV
+          else
+            echo "BUMP=bugfix" >> $GITHUB_ENV  # padrão seguro
+          fi
+
+      - name: Calcular nova tag
         id: bump
         run: |
           OLD_TAG=${{ env.TAG }}
           OLD_TAG=${OLD_TAG#v}
-          IFS='.' read -r MAJOR MINOR PATCH BUILD <<< "$OLD_TAG"
-          BUILD=$((BUILD + 1))
-          NEW_TAG="v$MAJOR.$MINOR.$PATCH.$BUILD"
+          IFS='.' read -r _ FEAT HOT BUG <<< "$OLD_TAG"
+
+          case "${{ env.BUMP }}" in
+            feature)
+              FEAT=$((FEAT + 1))
+              HOT=0
+              BUG=0
+              ;;
+            hotfix)
+              HOT=$((HOT + 1))
+              BUG=0
+              ;;
+            bugfix)
+              BUG=$((BUG + 1)
+              ;;
+          esac
+
+          NEW_TAG="v1.$FEAT.$HOT.$BUG"
+          echo "Nova tag: $NEW_TAG"
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
       - name: Atualizar versão no pom.xml
@@ -52,7 +92,7 @@ jobs:
       - name: Enviar TAG
         run: |
           if git ls-remote --tags origin | grep -q "refs/tags/${{ env.NEW_TAG }}$"; then
-            echo "A tag ${{ env.NEW_TAG }} já existe no repositório remoto. Ignorando push."
+            echo "Tag ${{ env.NEW_TAG }} já existe, ignorando push."
           else
             git tag ${{ env.NEW_TAG }}
             git push origin ${{ env.NEW_TAG }}
