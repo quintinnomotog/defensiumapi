@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
 	name = "Credentium-Service-Desenvolvimento",
+	contextId = "CredenciumClient",
 	fallback = CredenciumFallbackClient.class
 )
 public interface CredenciumClient {
