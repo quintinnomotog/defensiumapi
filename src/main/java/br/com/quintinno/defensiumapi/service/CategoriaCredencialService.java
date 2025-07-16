@@ -1,18 +1,21 @@
 package br.com.quintinno.defensiumapi.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import br.com.quintinno.defensiumapi.entity.CategoriaCredencialEntity;
 import br.com.quintinno.defensiumapi.mapper.CategoriaCredencialMapper;
 import br.com.quintinno.defensiumapi.repository.CategoriaCredencialRepository;
 import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialRequestTransfer;
 import br.com.quintinno.defensiumapi.tranfer.CategoriaCredencialResponseTransfer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoriaCredencialService {
 
+    private final Logger log = LoggerFactory.getLogger(CategoriaCredencialService.class);
 
     private final CategoriaCredencialRepository categoriaCredencialRepository;
 
@@ -20,7 +23,9 @@ public class CategoriaCredencialService {
         this.categoriaCredencialRepository = categoriaCredencialRepository;
     }
 
+    @Cacheable("categoriaCredencial")
     public List<CategoriaCredencialResponseTransfer> getFindAll() {
+        log.info("[DefensiumService -> CategoriaCredencialService.class]: Pesquisando na Base de Dados!");
         return CategoriaCredencialMapper
                 .toCategoriaCredencialResponseTransfer(this.categoriaCredencialRepository.findAll());
     }
