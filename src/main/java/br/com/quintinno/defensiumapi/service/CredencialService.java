@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.quintinno.defensiumapi.client.CredenciumClient;
+import br.com.quintinno.defensiumapi.client.CredentiumClient;
 import br.com.quintinno.defensiumapi.entity.CredencialEntity;
 import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 import br.com.quintinno.defensiumapi.exception.NegocioException;
@@ -29,7 +29,7 @@ public class CredencialService {
     private CredencialRepository credencialRepository;
 
     @Autowired
-    private CredenciumClient credenciumClient;
+    private CredentiumClient credentiumClient;
 
     @Autowired
     private PessoaRepository pessoaRepository;
@@ -55,8 +55,8 @@ public class CredencialService {
             throw new NegocioException("Essa Credencial já foi cadastrada!");
         }
         
-        logger.info("Criptografando senha via Credencium-Service");
-        String senhaCriptografada = credenciumClient.criptografarChaveSeguranca(credencialRequestTransfer.getSenha());
+        logger.info("Criptografando senha via credentium-Service");
+        String senhaCriptografada = credentiumClient.criptografarChaveSeguranca(credencialRequestTransfer.getSenha());
         credencialRequestTransfer.setSenha(senhaCriptografada);
         
         logger.info("Persistindo nova Credencial na Base de Dados!");
@@ -102,8 +102,8 @@ public class CredencialService {
     	if (credencialEntityOptional.isEmpty()) {
     		throw new NegocioException("Credencial Não Encontrada!");
     	}
-    	logger.info("Descriptografando senha via Credencium-Service");
-    	return credenciumClient.descriptografarChaveSeguranca(credencialEntityOptional.get().getSenha());
+    	logger.info("Descriptografando senha via credentium-Service");
+    	return credentiumClient.descriptografarChaveSeguranca(credencialEntityOptional.get().getSenha());
     }
     
     public CredencialResponseTransfer findOne(String codePublic) {

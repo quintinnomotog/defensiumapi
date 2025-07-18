@@ -4,13 +4,13 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "credenciumapi")
-public interface CredenciumClient {
+@FeignClient(name = "credentiumapi")
+public interface CredentiumClient {
 	
-	@PostMapping("credencium/criptografia/encoder/aes")
+	@PostMapping("credentium/criptografia/encoder/aes")
 	String criptografarChaveSeguranca(@RequestBody String chave);
 	
-	@PostMapping("credencium/criptografia/decoder/aes")
+	@PostMapping("credentium/criptografia/decoder/aes")
 	String descriptografarChaveSeguranca(@RequestBody String chave);
 	
 }
