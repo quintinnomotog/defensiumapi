@@ -1,5 +1,7 @@
 package br.com.quintinno.defensiumapi.tranfer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.com.quintinno.defensiumapi.entity.CategoriaCredencialEntity;
 import br.com.quintinno.defensiumapi.entity.PessoaEntity;
 import jakarta.validation.Valid;
@@ -10,10 +12,12 @@ public class CredencialRequestTransfer {
 
     @Valid
     @NotNull(message = "Necessário informar campo obrigatório!")
+    @JsonProperty("categoriaCredencial")
     private CategoriaCredencialEntity categoriaCredencialEntity;
 
     @Valid
     @NotNull(message = "Necessário informar campo obrigatório!")
+    @JsonProperty("pessoa")
     private PessoaEntity pessoaEntity;
 
 //    @NotBlank(message = "Necessário informar campo obrigatório!")
